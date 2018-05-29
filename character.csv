@@ -1,0 +1,121 @@
+CharacterId,CharacterName,Alias,Superpower,CharacterRole,ActorId,,Actor Name,seriesid
+1,Tony Stark,Iron Man,Wealth,Hero,1,,Robert Downey Jr.,
+2,James Rhodes,War Machine,Suit,Hero,2,,Don Cheadle,
+3,Obadiah Stane,Iron Monger,Suit,Villain,3,,Jeff Bridges,
+4,Yinsen,NULL,NULL,Neutral,4,,Shaun Toub,
+5,Pepper Pots,NULL,NULL,Neutral,5,,Gwyneth Paltrow,
+6,Nick Fury,NULL,NULL,Hero,6,,Samuel L. Jackson,
+7,Bruce Banner,Hulk,Strength,Hero,7,,Mark Ruffalo,
+8,Thaddeus Ross,Thunderbolt,NULL,Anti-Hero,8,,William Hurt,
+9,Natasha Romanoff,Black Widow,NULL,Hero,9,,Scarlett Johansson,
+10,Ivan Vanko,Whiplash,Suit,Villain,10,,Mickey Rourke,
+11,Thor,NULL,Strength,Hero,11,,Chris Hemsworth,
+12,Jane Foster,NULL,NULL,Hero,12,,Natalie Portman,
+13,Loki,NULL,Trickery? Shape Shifting?,Anti-Hero,13,,Tom Hiddleston,
+14,Erik Selvig,NULL,NULL,Neutral,14,,Stellan Skarsgard,
+15,Heimdall,NULL,Vision?,Hero,15,,Idris Elba,
+16,Odin,NULL,Strength,Neutral,16,,Anthony Hopkins,
+17,Frigga,NULL ,NULL,Neutral,17,,Rene Russo,
+18,Clint Barton,Hawkeye,Bow and arrow lol,Hero,18,,Jeremy Renner,
+19,Phil Coulson,NULL,NULL,Hero,19,,Clark Gregg,
+20,Maria Hill,NULL,NULL,Neutral,20,,Cobie Smulders,
+21,Steve Rogers,Captain America,Strength,Hero,21,,Chris Evans,
+22,Johann Schmidt,Red Skull,NULL,Villain,22,,Hugo Weaving,
+23,Peggy Carter,NULL,NULL,Hero,23,,Hayley Atwell,
+24,Bucky Barnes,Winter Soldier,Strength,Hero,24,,Sebastian Stan,
+25,Howard Stark,NULL,NULL,Hero,25,,Dominic Cooper,
+26,Aldrich Killian,The Mandarin,NULL,Villain,26,,Guy Pearce,
+27,Happy Hogan,NULL,NULL,Neutral,27,,Jon Favrue,
+28,Malekith,NULL,NULL,Villain,28,,Christopher Eccleston,
+29,Sif,NULL,??,Hero,29,,Jaimie Alexander,
+30,Sam Wilson,Falcon,Suit,Hero,30,,Anthony Mackie,
+31,Brock Rumlow,Crossbone,NULL,Villain,31,,Frank Grillo,
+32,Sharon Carter,Agent 13,NULL,Hero,32,,Emily VanCamp,
+33,Alexander Pierce,NULL,NULL,Villain,33,,Robert Redford,
+34,Peter Quill,Star Lord,NULL,Hero,34,,Chris Pratt,
+35,Gamora,NULL,NULL,Hero,35,,Zoe Saldana,
+36,Drax the Destroyer,NULL,Strength,Hero,36,,Dave Bautista,
+37,Groot,I am Groot,Tree?,Hero,37,,Vin Diesel,
+38,Rocket,NULL,NULL,Hero,38,,Bradley Cooper,
+39,Ronan the Accuser,NULL,Strength,Villain,39,,Lee Pace,
+40,Yondu Udonta,NULL,NULL,Anti-Hero,40,,Michael Rooker,
+41,Nebula,NULL,NULL,Anti-Hero,41,,Karen Gillan,
+42,Teneleer Trivan,The Collector,NULL,Neutral,42,,Benicio del Toro,
+43,Thanos,NULL,Strenght,Villain,43,,Josh Brolin,
+44,Pietro Maximoff,Quicksilver,Speed,Anti-Hero,44,,Aaron Taylor-Johnson,
+45,Wanda Maximoff,Scarlet Witch,"Telekenesis, Mind Control",Hero,45,,Elizabeth Olsen,
+46,Vision,NULL,Fligth,Hero,46,,Paul Bettany,
+47,Ultron,NULL,robot?,Villain,47,,James Spader,
+48,Scott Lang,Ant Man,tiny,Hero,48,,Paul Rudd,
+49,Hope van Dyne,Wasp,tiny,Hero,49,,Evangeline Lily,
+50,Darren Cross,Yellowjacket,tiny,Villain,50,,Corey Stoll,
+51,Hank Pym,NULL,NULL,Hero,51,,Michael Douglas,
+52,T'Challa,Black Panther,"Strength, Agility",Hero,52,,Chadwick Boseman,
+53,Peter Parker,Spider Man,"Agility, Sensory",Hero,53,,Tom Holland,
+54,Helmut Zemo,NULL,NULL,Villain,54,,Daniel Bruhl,
+55,Stephen Strange,Dr. Strange,Magic,Hero,55,,Benedict Cumberbatch,
+56,Karl Mordo,NULL,Magic,Hero,56,,Chiwetel Ejiofor,
+57,Wong,NULL,Magic,Hero,57,,Benedict Wong,
+58,Ancient One,NULL,Magic,Hero,58,,Tilda Swinton,
+59,Mantis,NULL,Mind Reading,Hero,59,,Pom Klementieff,
+60,Ayesha,NULL,NULL,Villain,60,,Elizabeth Debicki,
+61,Taserface,NULL,NULL,Villain,61,,Chirs Sullivan,
+62,Ego,NULL,Planet,Villain,62,,Kurt Russell,
+63,Adrian Toomes,Vulture,Suit,Villain,63,,Michael Keaton,
+64,Michelle Jones,NULL,NULL,Neutral,64,,Zendaya,
+65,Aaron Davis,Prowler,NULL,Neutral,65,,Donald Glover,
+66,May Parker,NULL,NULL,Neutral,66,,Marisa Tomei,
+67,Ned,NULL,NULL,Hero,67,,Jacob Batalon,
+68,Hela,NULL,Magic,Villain,68,,Cate Blanchett,
+69,Grandmaster,NULL,NULL,Neutral,69,,Jeff Goldblum,
+70,Valkryie,NULL,NULL,Hero,70,,Tessa Thompson,
+71,Skurge,NULL,NULL,Villain,71,,Karl Urban,
+72,Erik Stevens,Killmonger,NULL,Villain,72,,Michael B. Jordan,
+73,Nakia,NULL,NULL,Hero,73,,Lupita Nyong'o,
+74,Okoye,NULL,NULL,Hero,74,,Danai Gurira,
+75,Everett K. Ross,NULL ,NULL,Hero,75,,Martin Freeman,
+76,W'Kabi,NULL,NULL,Anti-Hero,76,,Daniel Kaluuya,
+77,Shuri,NULL,Intellegence,Hero,77,,Letitia Wright,
+78,M'Baku,Man Ape,Strength,Anti-Hero,78,,Winston Duke,
+79,Ulysses Klaue,Klaw,Technology,Villain,79,,Andy Serkis,
+80,Eitri,NULL,NULL,Neutral,80,,Peter Dinklage,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+81,Phil Coulson,NULL,NULL,Hero,81,,Clark Gregg,1
+82,Melinda May,NULL,NULL,Hero,82,,Ming-Na Wen,1
+83,Grant Ward,Hive,Possession,Villian,83,,Brett Dalton,1
+84,"Daisy ""Skye"" Johnson",Quake,Earthquakes,Hero,84,,Chloe Bennet,1
+85,Jemma Simmons,NULL,Intelligence,Hero,85,,Elizabeth Henstridge,1
+86,"Elena ""Yo-Yo"" Rodriguez",Yo-Yo,speed,Hero,86,,Natalia Cordova-Buckley,1
+87,Peggy Carter,NULL,NULL,Hero,87,,Hayley Atwell ,2
+88,Edwin Jarvis,NULL,NULL,Neutral,88,,James D'Arcy ,2
+89,Black Bolt,NULL,Sound,Hero,89,,Anson Mount,3
+90,Medusa,NULL,Hair,Hero,90,,Serinda Swan,3
+91,Karnak,NULL,NULL,Hero,91,,Ken Leung,3
+92,Gorgon,NULL,NULL,Hero,92,,Eme Ikwaukor,3
+93,Crystal,NULL,"Earth, Air, Fire, Water",Hero,93,,Isabelle Cornish,3
+94,Maximus,NULL,NULL,NULL,94,,Iwan Rheon,3
+95,Matt Murdock,Daredevil,NULL,NULL,95,,Charlie Cox,"4, 8"
+96,Karen Page,NULL,NULL,Neutral,96,,Deborah Ann Woll,"4, 8, 9, "
+97,Elden Henson,NULL,NULL,NULL,97,,Elden Henson,4
+98,Jessica Jones,NULL,"Strength, Flight",Hero,98,,Krysten Ritter,"5, 8"
+99,Luke Cage,NULL,Strength,Hero,99,,Mike Colter,"5,6, 8, "
+100,Kilgrave,NULL,Mind control,Villain,100,,David Tennant,5
+101,"Cornell ""Cottonmouth"" Stokes",NULL,NULL,Villian,101,,Mahershala Ali,6
+102,Misty Knight,NULL,NULL,Hero,102,,Simone Missick,6
+103,"Hernan ""Shades"" Alvarez",NULL,NULL,Villian,103,,Theo Rossi,6
+104,Danny Rand ,Iron Fist,Kung-fu and Iron Fist,Hero,104,,Finn Jones,"7,8, "
+105,Colleen Wing,NULL,NULL,Hero,105,,Jessica Henwick,7
+106,Ward Meachum,NULL,NULL,Neutral,106,,Tom Pelphrey,7
+107,Frank Castle,Punisher,NULL,Anti-Hero,107,,Jon Bernthal,9
+108,David Lieberman,Micro,NULL,Hero,108,,Ebon Moss-Bachrach ,9
+109,Billy Russo,NULL,NULL,Neutral,109,,Ben Barnes,9
+110,Alex Wilder,NULL,Intelligence,Hero,110,,Rhenzy Feliz,10
+111,Nico Minoru,NULL,NULL,Hero,111,,Lyrica Okano ,10
+112,Karolina Dean,NULL,"Flight, Light shooting",Hero,112,,Virginia Gardner,10
+113,Gert Yorkes,NULL,Telepathy,Hero,113,,Ariela Barer,10
+114,Jonah,NULL,NULL,VIllain,114,,Julian McMahon,10
+115,Tandy Bowen,Dagger,Light shooting,Hero,115,,Olivia Holt,11
+116,Tyrone Johnson,Cloak,Darkness,Hero,116,,Aubrey Joseph ,11
+117,Melissa Bowen,NULL,NULL,Neutral,117,,Andrea Roth,11
