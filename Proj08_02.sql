@@ -433,9 +433,9 @@ VALUES
 	(81,'Phil Coulson',NULL,NULL,'Hero',81),
 	(82,'Melinda May',NULL,NULL,'Hero',82),
 	(83,'Grant Ward','Hive','Possession','Villain',83),
-	(84,'`Daisy ``Skye`` Johnson`','Quake','Earthquakes','Hero',84),
+	(84,'Daisy `Skye` Johnson`','Quake','Earthquakes','Hero',84),
 	(85,'Jemma Simmons',NULL,'Intelligence','Hero',85),
-	(86,'`Elena ``Yo-Yo`` Rodriguez`','Yo-Yo','speed','Hero',86),
+	(86,'Elena `Yo-Yo` Rodriguez`','Yo-Yo','speed','Hero',86),
 	(87,'Peggy Carter',NULL,NULL,'Hero',87),
 	(88,'Edwin Jarvis',NULL,NULL,'Neutral',88),
 	(89,'Black Bolt',NULL,'Sound','Hero',89),
@@ -450,9 +450,9 @@ VALUES
 	(98,'Jessica Jones',NULL,'Strength, Flight','Hero',98),
 	(99,'Luke Cage',NULL,'Strength','Hero',99),
 	(100,'Kilgrave',NULL,'Mind control','Villain',100),
-	(101,'`Cornell ``Cottonmouth`` Stokes`',NULL,NULL,'Villain',101),
+	(101,'Cornell `Cottonmouth` Stokes`',NULL,NULL,'Villain',101),
 	(102,'Misty Knight',NULL,NULL,'Hero',102),
-	(103,'`Hernan ``Shades`` Alvarez`',NULL,NULL,'Villain',103),
+	(103,'Hernan `Shades` Alvarez`',NULL,NULL,'Villain',103),
 	(104,'Danny Rand ','Iron Fist','Kung-fu and Iron Fist','Hero',104),
 	(105,'Colleen Wing',NULL,NULL,'Hero',105),
 	(106,'Ward Meachum',NULL,NULL,'Neutral',106),
@@ -514,4 +514,9 @@ VALUES
 	(115,115,11),
 	(116,116,11),
 	(117,117,11);
+    
+#sample queries
+SELECT * 
+FROM `Character`
+WHERE CharacterRole = 'Villain';
 
