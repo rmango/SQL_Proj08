@@ -44,7 +44,7 @@ CREATE TABLE mcu.Series
 	SeriesId	INT UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
     SeriesName	VARCHAR(45)	NOT NULL,
     NumEpisodes	TINYINT(3)	NOT NULL,
-    Platform	ENUM('Netflix','Hulu','ABC'),
+    Platform	ENUM('Netflix','Hulu','ABC','Freeform'),
     FirstAired	DATE		NOT NULL
 );
 
@@ -331,6 +331,21 @@ VALUES
 	(10,'Marvel`s Runaways',23,'Hulu','2018-11-21'),
 	(11,'Marvel`s Cloak & Dagger',10,'Freeform','2018-06-07');
 
+INSERT INTO user
+VALUES
+	(1,'bhaken0','2017-10-25'),
+	(2,'rchamperlen1','2017-07-30'),
+	(3,'khenrion2','2018-04-06'),
+	(4,'gborham3','2017-11-15'),
+	(5,'prymer4','2017-06-27'),
+	(6,'ndessent5','2018-05-20'),
+	(7,'awescott6','2017-11-19'),
+	(8,'efranks7','2017-07-22'),
+	(9,'tweben8','2018-05-08'),
+	(10,'nitzkovsky9','2018-01-17'),
+	(11,'spoilerguy123','2017-11-11'),
+	(12,'wtramelb','2018-01-06'),
+	(13,'gklimkoc','2018-03-30');
 
 
 
