@@ -14,22 +14,39 @@ CREATE TABLE mcu.Person
 );
 
 
-DROP TABLE IF EXISTS mcu.Actor;
-CREATE TABLE mcu.Actor
-(
-	ActorId		INT	UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
-    Name	VARCHAR(45)	NOT NULL,
-    BirthDate	DATE		NULL,
-    OscarWinner	ENUM('Winner','Nominee','Not Yet')
-);
+#DROP TABLE IF EXISTS mcu.Actor;
+#CREATE TABLE mcu.Actor
+#(
+#	ActorId		INT	UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
+#    Name	VARCHAR(45)	NOT NULL,
+#    BirthDate	DATE		NULL,
+#    OscarWinner	ENUM('Winner','Nominee','Not Yet')
+#);
 
-DROP TABLE IF EXISTS mcu.Director;
-CREATE TABLE mcu.Director
+#DROP TABLE IF EXISTS mcu.Director;
+#CREATE TABLE mcu.Director
+#(
+#	DirectorId	INT UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
+#    FirstName	VARCHAR(45)	NOT NULL,
+#    LastName 	VARCHAR(45)	NOT NULL,
+#    BirthDate	DATE		NULL
+#);
+
+DROP TABLE IF EXISTS mcu.MovieDirector;
+CREATE TABLE mcu.MovieDirector
 (
-	DirectorId	INT UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
-    FirstName	VARCHAR(45)	NOT NULL,
-    LastName 	VARCHAR(45)	NOT NULL,
-    BirthDate	DATE		NULL
+	DirectorId	INT UNSIGNED,
+    MovieId		INT UNSIGNED,
+    CONSTRAINT	pk_director_movie_id
+		PRIMARY KEY	(DirectorId, MovieId),
+	CONSTRAINT	fk_directorId_person
+		FOREIGN KEY	(DirectorId)
+			REFERENCES	Person(PersonId)
+            ON DELETE RESTRICT,
+	CONSTRAINT	fk_movieId_movie
+		FOREIGN KEY (MovieId)
+			REFERENCES	Movie(MovieId)
+            ON DELETE RESTRICT
 );
 
 DROP TABLE IF EXISTS mcu.Movie;
