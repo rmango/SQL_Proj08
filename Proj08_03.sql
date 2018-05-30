@@ -197,13 +197,13 @@ VALUES
 	(9,'Scarlett','Johansson','1984-11-22',NULL),
 	(10,'Mickey','Rourke','1952-09-16','Nominee'),
 	(11,'Chris','Hemsworth','1983-08-11',NULL),
-	(12,'Natalie','Portman','1981-06-09',NULL),
+	(12,'Natalie','Portman','1981-06-09','Winner'),
 	(13,'Tom','Hiddleston','1981-02-09',NULL),
 	(14,'Stellan','Skarsgard','1951-06-13',NULL),
 	(15,'Idris','Elba','1972-09-06',NULL),
-	(16,'Anthony','Hopkins','1937-12-31',NULL),
+	(16,'Anthony','Hopkins','1937-12-31','Winner'),
 	(17,'Rene','Russo','1954-02-17',NULL),
-	(18,'Jeremy','Renner','1971-01-07',NULL),
+	(18,'Jeremy','Renner','1971-01-07','Nominee'),
 	(19,'Clark','Gregg','1962-04-02',NULL),
 	(20,'Cobie','Smulders','1982-04-03',NULL),
 	(21,'Chris','Evans','1981-06-13',NULL),
@@ -218,17 +218,17 @@ VALUES
 	(30,'Anthony','Mackie','1978-09-23',NULL),
 	(31,'Frank','Grillo','1965-06-08',NULL),
 	(32,'Emily','VanCamp','1986-05-12',NULL),
-	(33,'Robert','Redford','1936-08-18',NULL),
+	(33,'Robert','Redford','1936-08-18','Winner'),
 	(34,'Chris','Pratt','1979-06-21',NULL),
 	(35,'Zoe','Saldana','1978-06-19',NULL),
 	(36,'Dave','Bautista','1969-01-18',NULL),
 	(37,'Vin','Diesel','1967-07-18',NULL),
-	(38,'Bradley','Cooper','1975-01-05',NULL),
+	(38,'Bradley','Cooper','1975-01-05','Nominee'),
 	(39,'Lee','Pace','1979-03-25',NULL),
 	(40,'Michael','Rooker','1955-04-06',NULL),
 	(41,'Karen','Gillan','1987-11-28',NULL),
-	(42,'Benicio','del Toro','1967-02-19',NULL),
-	(43,'Josh','Brolin','1968-02-12',NULL),
+	(42,'Benicio','del Toro','1967-02-19','Winner'),
+	(43,'Josh','Brolin','1968-02-12','Nominee'),
 	(44,'Aaron','Taylor-Johnson','1990-06-13',NULL),
 	(45,'Elizabeth','Olsen','1989-02-16',NULL),
 	(46,'Paul','Bettany','1971-05-27',NULL),
@@ -236,32 +236,32 @@ VALUES
 	(48,'Paul','Rudd','1969-04-06',NULL),
 	(49,'Evangeline','Lily','1979-08-03',NULL),
 	(50,'Corey','Stoll','1976-03-04',NULL),
-	(51,'Michael','Douglas','1944-09-25',NULL),
+	(51,'Michael','Douglas','1944-09-25','Winner'),
 	(52,'Chadwick','Boseman','1977-11-29',NULL),
 	(53,'Tom','Holland','1996-06-01',NULL),
 	(54,'Daniel','Bruhl','1978-06-16',NULL),
-	(55,'Benedict','Cumberbatch','1976-07-19',NULL),
-	(56,'Chiwetel','Ejiofor','1977-07-10',NULL),
+	(55,'Benedict','Cumberbatch','1976-07-19','Nominee'),
+	(56,'Chiwetel','Ejiofor','1977-07-10','Nominee'),
 	(57,'Benedict','Wong','1971-06-03',NULL),
-	(58,'Tilda','Swinton','1960-11-05',NULL),
+	(58,'Tilda','Swinton','1960-11-05','Winner'),
 	(59,'Pom','Klementieff','1986-05-03',NULL),
 	(60,'Elizabeth','Debicki','1990-08-24',NULL),
 	(61,'Chirs','Sullivan','1980-07-19',NULL),
 	(62,'Kurt','Russell','1951-03-17',NULL),
-	(63,'Michael','Keaton','1951-09-05',NULL),
+	(63,'Michael','Keaton','1951-09-05','Nominee'),
 	(64,'Zendaya','','1996-09-01',NULL),
 	(65,'Donald','Glover','1983-09-25',NULL),
-	(66,'Marisa','Tomei','1964-12-04',NULL),
+	(66,'Marisa','Tomei','1964-12-04','Winner'),
 	(67,'Jacob','Batalon','1996-06-06',NULL),
-	(68,'Cate','Blanchett','1969-05-14',NULL),
+	(68,'Cate','Blanchett','1969-05-14','Winner'),
 	(69,'Jeff','Goldblum','1952-10-22',NULL),
 	(70,'Tessa','Thompson','1983-10-03',NULL),
 	(71,'Karl','Urban','1972-06-07',NULL),
 	(72,'Michael B.','Jordan','1987-02-09',NULL),
-	(73,'Lupita','Nyong`o','1983-03-01',NULL),
+	(73,'Lupita','Nyong`o','1983-03-01','Winner'),
 	(74,'Danai','Gurira','1978-02-14',NULL),
 	(75,'Martin','Freeman','1971-09-08',NULL),
-	(76,'Daniel','Kaluuya','1989-02-24',NULL),
+	(76,'Daniel','Kaluuya','1989-02-24','Nominee'),
 	(77,'Letitia','Wright','1993-10-31',NULL),
 	(78,'Winston','Duke','1986-11-15',NULL),
 	(79,'Andy','Serkis','1964-04-20',NULL),
@@ -284,7 +284,7 @@ VALUES
 	(96,'Krysten','Ritter','1981-12-16',NULL),
 	(97,'Mike','Colter','1976-08-26',NULL),
 	(98,'David','Tennant','1971-04-18',NULL),
-	(99,'Mahershala','Ali','1974-02-16',NULL),
+	(99,'Mahershala','Ali','1974-02-16','Winner'),
 	(100,'Simone','Missick','1982-01-19',NULL),
 	(101,'Theo','Rossi','1975-06-04',NULL),
 	(102,'Finn','Jones','1988-03-24',NULL),
@@ -303,7 +303,7 @@ VALUES
 	(115,'Andrea','Roth','1967-09-30',NULL),
 	(116,'Louis','Leterrier','1973-06-17',NULL),
 	(117,'Kenneth','Branagh','1960-12-10',NULL),
-	(118,'Joe','Johnston','1950-05-13',NULL),
+	(118,'Joe','Johnston','1950-05-13','Winner'),
 	(119,'Joss','Whedon','1964-06-23',NULL),
 	(120,'Shane','Black','1961-12-16',NULL),
 	(121,'Alan','Taylor',NULL,NULL),
@@ -314,7 +314,12 @@ VALUES
 	(126,'Scott','Derrickson','1966-07-16',NULL),
 	(127,'Jon','Watts','1981-06-28',NULL),
 	(128,'Taika','Waititi','1975-08-16',NULL),
-	(129,'Ryan','Coolger','1986-05-23',NULL);
+	(129,'Ryan','Coolger','1986-05-23',NULL),
+	(130,'Forest','Whitaker','1961-07-15','Winner'),
+	(131,'Terrence','Howard','1969-03-11','Nominee'),
+	(132,'Edward','Norton','1969-08-18','Nominee'),
+	(133,'Ben','Kingsley','1943-12-31','Winner');
+
 
 INSERT INTO user
 VALUES
@@ -769,10 +774,18 @@ VALUES
 
 INSERT INTO seriescomment
 VALUES
-	(2,4),
+	(2,1),
 	(1,3);
 
 INSERT INTO movieComment
 	(MovieId,CommentId)
 VALUES
 	(19,3);
+    
+    
+#sample queries
+
+SELECT LastName
+FROM Person
+	JOIN `Character`
+		ON PersonId = ActorId;
