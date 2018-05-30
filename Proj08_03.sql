@@ -794,8 +794,111 @@ FROM Person
 		USING (MovieId)
 WHERE Title = 'Thor';
         
-#get all movies w/oscar-winning directors
-
 #get all movies w/oscar-winning actors
+SELECT DISTINCT Movie.Title
+FROM Movie
+	JOIN MovieCharacter 
+		USING(MovieId)
+	JOIN `Character`
+		USING(CharacterId)
+	JOIN Person
+		ON ActorId = PersonId
+WHERE Person.Oscars = 'Winner';
+	
+#movies that have oscar winners are __ percent more likey to have a rating above 6
 
-#
+	#all movies that involve oscar-winners
+	SELECT DISTINCT Title, Rating#, directorPerson.LastName AS 'Director Name', ActorPerson.LastName AS 'Actor Name'
+	FROM Movie
+		JOIN MovieDirector USING(MovieId)
+		JOIN Person AS directorPerson ON DirectorId = PersonId
+		JOIN MovieCharacter USING(MovieId)
+		JOIN `Character` USING (CharacterId)
+		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
+	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner';
+
+	#average rating of movies w/oscar-winning actors or directors
+	SELECT DISTINCT Title, Rating, COUNT(DISTINCT(Title))#, SUM(Rating)/COUNT(Rating) 
+	FROM Movie
+		JOIN MovieDirector USING(MovieId)
+		JOIN Person AS directorPerson ON DirectorId = PersonId
+		JOIN MovieCharacter USING(MovieId)
+		JOIN `Character` USING (CharacterId)
+		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
+	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner';
+
+#average of all oscar
+SELECT AVG(Rating)
+FROM (
+    SELECT DISTINCT Title, Rating
+	FROM Movie
+		JOIN MovieDirector USING(MovieId)
+		JOIN Person AS directorPerson ON DirectorId = PersonId
+		JOIN MovieCharacter USING(MovieId)
+		JOIN `Character` USING (CharacterId)
+		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
+	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner') oscarMovie;
+
+SELECT AVG(Rating)
+FROM (
+    SELECT DISTINCT Title, Rating
+	FROM Movie
+		JOIN MovieDirector USING(MovieId)
+		JOIN Person AS directorPerson ON DirectorId = PersonId
+		JOIN MovieCharacter USING(MovieId)
+		JOIN `Character` USING (CharacterId)
+		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
+	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner') oscarMovie;
+ 
+ #array of movies that do not contain oscar winners
+SELECT *
+FROM Movie
+WHERE 
+MovieId NOT IN (
+    SELECT DISTINCT MovieId
+	FROM Movie
+		JOIN MovieDirector USING(MovieId)
+		JOIN Person AS directorPerson ON DirectorId = PersonId
+		JOIN MovieCharacter USING(MovieId)
+		JOIN `Character` USING (CharacterId)
+		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
+	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner');
+    
+#avg of array of movies that do not contain oscar winners
+SELECT AVG(Rating)
+FROM Movie
+WHERE 
+MovieId NOT IN (
+    SELECT DISTINCT MovieId
+	FROM Movie
+		JOIN MovieDirector USING(MovieId)
+		JOIN Person AS directorPerson ON DirectorId = PersonId
+		JOIN MovieCharacter USING(MovieId)
+		JOIN `Character` USING (CharacterId)
+		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
+	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner');
+
+SELECT (ABS(YesOscar - NoOscar))/((YesOscar + NoOscar)/2)*100 AS PercentDifference
+FROM (SELECT AVG(Rating) AS 'NoOscar'
+	FROM Movie
+	WHERE 
+	MovieId NOT IN (
+		SELECT DISTINCT MovieId
+		FROM Movie
+			JOIN MovieDirector USING(MovieId)
+			JOIN Person AS directorPerson ON DirectorId = PersonId
+			JOIN MovieCharacter USING(MovieId)
+			JOIN `Character` USING (CharacterId)
+			JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
+		WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner')) NoOscarMovieRating
+	JOIN (SELECT AVG(Rating) AS 'YesOscar'
+			FROM (
+				SELECT DISTINCT Title, Rating
+				FROM Movie
+					JOIN MovieDirector USING(MovieId)
+					JOIN Person AS directorPerson ON DirectorId = PersonId
+					JOIN MovieCharacter USING(MovieId)
+					JOIN `Character` USING (CharacterId)
+					JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
+				WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner') oscarMovie) OscarMovieRating;
+
