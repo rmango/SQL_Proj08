@@ -46,15 +46,13 @@ CREATE TABLE mcu.User
 DROP TABLE IF EXISTS mcu.Character;
 CREATE TABLE mcu.Character
 (
-	CharacterId		INT	UNSIGNED	AUTO_INCREMENT,
+	CharacterId		INT	UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
     CharacterName	VARCHAR(45),
     Alias			VARCHAR(45)													NULL,
     Superpower		VARCHAR(45) NULL, 
     #SET('Flight','Speed','Intelligence','Wealth','Strength')	NULL, <-- change later, cant add data
     CharacterRole	ENUM('Hero','Villain','Anti-Hero','Neutral')				NULL,
     ActorId			INT UNSIGNED,
-    CONSTRAINT 	pk_char_acto_id
-		PRIMARY KEY (CharacterId, ActorId),
 	CONSTRAINT	fk_char_acto_id
 		FOREIGN KEY (ActorId)
 			REFERENCES Person(PersonId)
@@ -785,7 +783,19 @@ VALUES
     
 #sample queries
 
-SELECT LastName
+#get all actors from Thor
+SELECT CONCAT(Person.FirstName,' ',Person.LastName) AS ActorName, CharacterName
 FROM Person
 	JOIN `Character`
-		ON PersonId = ActorId;
+		ON PersonId = ActorId
+	JOIN MovieCharacter
+		USING (CharacterId)
+	JOIN Movie 
+		USING (MovieId)
+WHERE Title = 'Thor';
+        
+#get all movies w/oscar-winning directors
+
+#get all movies w/oscar-winning actors
+
+#
