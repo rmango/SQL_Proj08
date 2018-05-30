@@ -3,6 +3,17 @@ CREATE DATABASE mcu;
 USE mcu;
 SHOW TABLES;
 
+DROP TABLE IF EXISTS mcu.Person;
+CREATE TABLE mcu.Person
+(	
+	PersonId	INT	UNSIGNED	PRIMARY KEY	AUTO_INCREMENT,
+    FirstName	VARCHAR(45)	NOT NULL,
+    LastName	VARCHAR(45)	NOT NULL,
+    BirthDate	DATE,
+    Oscars		ENUM('Winner','Nominee')	NULL
+);
+
+
 DROP TABLE IF EXISTS mcu.Actor;
 CREATE TABLE mcu.Actor
 (
