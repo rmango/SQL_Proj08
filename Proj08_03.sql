@@ -818,7 +818,7 @@ WHERE Person.Oscars = 'Winner';
 	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner';
 
 	#average rating of movies w/oscar-winning actors or directors
-	SELECT DISTINCT Title, Rating, COUNT(DISTINCT(Title))#, SUM(Rating)/COUNT(Rating) 
+	SELECT DISTINCT Title, Rating#, COUNT(DISTINCT(Title))#, SUM(Rating)/COUNT(Rating) 
 	FROM Movie
 		JOIN MovieDirector USING(MovieId)
 		JOIN Person AS directorPerson ON DirectorId = PersonId
@@ -878,27 +878,56 @@ MovieId NOT IN (
 		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
 	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner');
 
-SELECT (ABS(YesOscar - NoOscar))/((YesOscar + NoOscar)/2)*100 AS PercentDifference
-FROM (SELECT AVG(Rating) AS 'NoOscar'
-	FROM Movie
-	WHERE 
-	MovieId NOT IN (
-		SELECT DISTINCT MovieId
+#FINALLLY
+SELECT ROUND((ABS(YesOscar - NoOscar))/((YesOscar + NoOscar)/2)*100,2) AS PercentDifference
+FROM (	
+		SELECT AVG(Rating) AS 'NoOscar'
 		FROM Movie
-			JOIN MovieDirector USING(MovieId)
-			JOIN Person AS directorPerson ON DirectorId = PersonId
-			JOIN MovieCharacter USING(MovieId)
-			JOIN `Character` USING (CharacterId)
-			JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
-		WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner')) NoOscarMovieRating
-	JOIN (SELECT AVG(Rating) AS 'YesOscar'
-			FROM (
-				SELECT DISTINCT Title, Rating
-				FROM Movie
-					JOIN MovieDirector USING(MovieId)
-					JOIN Person AS directorPerson ON DirectorId = PersonId
-					JOIN MovieCharacter USING(MovieId)
-					JOIN `Character` USING (CharacterId)
-					JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
-				WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner') oscarMovie) OscarMovieRating;
+		WHERE 
+		MovieId NOT IN (
+			SELECT DISTINCT MovieId
+			FROM Movie
+				JOIN MovieDirector USING(MovieId)
+				JOIN Person AS directorPerson ON DirectorId = PersonId
+				JOIN MovieCharacter USING(MovieId)
+				JOIN `Character` USING (CharacterId)
+				JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
+			WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner')) NoOscarMovieRating
+	JOIN (
+		SELECT AVG(Rating) AS 'YesOscar'
+		FROM (
+			SELECT DISTINCT Title, Rating
+			FROM Movie
+				JOIN MovieDirector USING(MovieId)
+				JOIN Person AS directorPerson ON DirectorId = PersonId
+				JOIN MovieCharacter USING(MovieId)
+				JOIN `Character` USING (CharacterId)
+				JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
+			WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner') oscarMovie) OscarMovieRating;
+
+# all comments from movies and series that an actor was in
+
+#people that were born after 1989
+DROP VIEW IF EXISTS millenialPpl;
+CREATE VIEW millenialPpl AS
+SELECT * 
+FROM Person
+WHERE Birthdate > '1989-12-31'
+ORDER BY Birthdate DESC;
+
+SELECT * 
+FROM millenialPpl;
+
+
+#view of movies that have someone named chris
+DROP VIEW IF EXISTS chrisMovie;
+CREATE VIEW chrisMovie AS
+SELECT Title
+FROM Movie
+	JOIN MovieCharacter USING(MovieId)
+    JOIN `Character` USING(CharacterId)
+    JOIN Person ON PersonId = ActorId
+WHERE Person.FirstName = 'Chris';
+    
+SELECT * FROM chrisMovie;
 
