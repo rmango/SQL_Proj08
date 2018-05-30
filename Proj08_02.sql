@@ -98,7 +98,7 @@ CREATE TABLE mcu.Character
 		PRIMARY KEY (CharacterId, ActorId),
 	CONSTRAINT	fk_char_acto_id
 		FOREIGN KEY (ActorId)
-			REFERENCES Actor(ActorId)
+			REFERENCES Person(PersonId)
             		ON DELETE RESTRICT		
 );
 
