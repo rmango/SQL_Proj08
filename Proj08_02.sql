@@ -14,33 +14,35 @@ CREATE TABLE mcu.Person
 );
 
 
-DROP TABLE IF EXISTS mcu.Actor;
-CREATE TABLE mcu.Actor
-(
-	ActorId		INT	UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
-    Name	VARCHAR(45)	NOT NULL,
-    BirthDate	DATE		NULL,
-    OscarWinner	ENUM('Winner','Nominee','Not Yet')
-);
+#DROP TABLE IF EXISTS mcu.Actor;
+#CREATE TABLE mcu.Actor
+#(
+#	ActorId		INT	UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
+#    Name	VARCHAR(45)	NOT NULL,
+#    BirthDate	DATE		NULL,
+#    OscarWinner	ENUM('Winner','Nominee','Not Yet')
+#);
 
-DROP TABLE IF EXISTS mcu.Director;
-CREATE TABLE mcu.Director
-(
-	DirectorId	INT UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
-    FirstName	VARCHAR(45)	NOT NULL,
-    LastName 	VARCHAR(45)	NOT NULL,
-    BirthDate	DATE		NULL
-);
+#DROP TABLE IF EXISTS mcu.Director;
+#CREATE TABLE mcu.Director
+#(
+#	DirectorId	INT UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
+#    FirstName	VARCHAR(45)	NOT NULL,
+#    LastName 	VARCHAR(45)	NOT NULL,
+#    BirthDate	DATE		NULL
+#);
+
+
 
 DROP TABLE IF EXISTS mcu.Movie;
 CREATE TABLE mcu.Movie
 (
 	MovieId			INT UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
-    Title			VARCHAR(45),
-    Rating			DECIMAL(2,1),
-    BoxOffice		DECIMAL(12,2),
-    DirectorId		INT UNSIGNED,
-    USReleaseDate	DATE,
+    Title			VARCHAR(45)	NOT NULL,
+    Rating			DECIMAL(2,1)	NULL,
+    BoxOffice		DECIMAL(12,2)	NULL,
+    DirectorId		INT UNSIGNED	NOT NULL,
+    USReleaseDate	DATE	NOT NULL,
     Budget			DECIMAL(20,2), #check this
     Phase			TINYINT(1),
 	CONSTRAINT	fk_movi_director_id
@@ -81,90 +83,195 @@ CREATE TABLE mcu.Character
 		PRIMARY KEY (CharacterId, ActorId),
 	CONSTRAINT	fk_char_acto_id
 		FOREIGN KEY (ActorId)
-			REFERENCES Actor(ActorId)
+			REFERENCES Person(PersonId)
             		ON DELETE RESTRICT		
 );
 
-DROP TABLE IF EXISTS mcu.MovieComments;
-CREATE TABLE mcu.MovieComments
+DROP TABLE IF EXISTS mcu.Comment;
+CREATE TABLE mcu.Comment
 (
-	MovieCommentId	INT PRIMARY KEY	AUTO_INCREMENT,
-	CommentText	VARCHAR(45),
-	CommentTime	DATETIME(6),
-	UserId		INT UNSIGNED,
-	MovieId		INT	UNSIGNED,
-	CONSTRAINT	fk_comment_user_movie_id
+	CommentId	INT UNSIGNED	PRIMARY KEY,
+    CommentText	VARCHAR(140)	NOT NULL,
+    CommentTime	DATETIME(8)		NOT NULL,
+    UserId		INT UNSIGNED,
+    CONSTRAINT	fk_userId_user
 		FOREIGN KEY (UserId)
-			REFERENCES User (UserId)
-			ON DELETE RESTRICT,
-	CONSTRAINT	fk_comment_movie_id
-		FOREIGN KEY (MovieId)
-			REFERENCES Movie (MovieId)
-			ON DELETE RESTRICT
+			REFERENCES mcu.User(UserId)
+            ON DELETE RESTRICT
 );
 
-DROP TABLE IF EXISTS mcu.SeriesComments;
-CREATE TABLE mcu.SeriesComments
-(
-	SeriesCommentId	INT PRIMARY KEY	AUTO_INCREMENT,
-	CommentText	VARCHAR(45),
-	CommentTime	DATETIME(6),
-	UserId		INT UNSIGNED,
-	SeriesId	INT	UNSIGNED,
-	CONSTRAINT	fk_comment_user_series_id
-		FOREIGN KEY (UserId)
-			REFERENCES User (UserId)
-			ON DELETE RESTRICT,
-	CONSTRAINT	fk_comment_series_id
-		FOREIGN KEY (SeriesId)
-			REFERENCES Series (SeriesId)
-			ON DELETE RESTRICT
-);
 
-#LINKING TABLE FOR CHARATERS AND MOVIE
+
+#DROP TABLE IF EXISTS mcu.MovieComments;
+#CREATE TABLE mcu.MovieComments
+#(
+#	MovieCommentId	INT PRIMARY KEY	AUTO_INCREMENT,
+#	CommentText	VARCHAR(45),
+#	CommentTime	DATETIME(6),
+#	UserId		INT UNSIGNED,
+#	MovieId		INT	UNSIGNED,
+#	CONSTRAINT	fk_comment_user_movie_id
+#		FOREIGN KEY (UserId)
+#			REFERENCES User (UserId)
+#			ON DELETE RESTRICT,
+#	CONSTRAINT	fk_comment_movie_id
+#		FOREIGN KEY (MovieId)
+#			REFERENCES Movie (MovieId)
+#			ON DELETE RESTRICT
+#);
+
+#DROP TABLE IF EXISTS mcu.SeriesComments;
+#CREATE TABLE mcu.SeriesComments
+#(
+#	SeriesCommentId	INT PRIMARY KEY	AUTO_INCREMENT,
+#	CommentText	VARCHAR(45),
+#	CommentTime	DATETIME(6),
+#	UserId		INT UNSIGNED,
+#	SeriesId	INT	UNSIGNED,
+#	CONSTRAINT	fk_comment_user_series_id
+#		FOREIGN KEY (UserId)
+#			REFERENCES User (UserId)
+#			ON DELETE RESTRICT,
+#	CONSTRAINT	fk_comment_series_id
+#		FOREIGN KEY (SeriesId)
+#			REFERENCES Series (SeriesId)
+#			ON DELETE RESTRICT
+#);
+
+
+#########################################
+#										#
+#		LINKING TABLES					#
+#										#				
+#########################################
+
 DROP TABLE IF EXISTS mcu.MovieCharacter;
 CREATE TABLE mcu.MovieCharacter
 (
-	CharacterId	INT	UNSIGNED,
-	ActorId		INT	UNSIGNED,
-	MovieId		INT	UNSIGNED,
-	CONSTRAINT	pk_character_actor_movie_id
-		PRIMARY KEY (CharacterId, ActorId, MovieId),
-	CONSTRAINT	fk_link_character_id
-		FOREIGN KEY (CharacterId)
-			REFERENCES mcu.Character (CharacterId)
-			ON DELETE RESTRICT,
-	CONSTRAINT	fk_link_movie_id
+	MovieId		INT UNSIGNED,
+    CharacterId	INT UNSIGNED,
+    CONSTRAINT	pk_character_movie_id
+		PRIMARY KEY (MovieId, CharacterId),
+	CONSTRAINT	fk_movieId_movie
 		FOREIGN KEY (MovieId)
-			REFERENCES Movie (MovieId)
-			ON DELETE RESTRICT,
-	CONSTRAINT	fk_link_actor_id
-		FOREIGN KEY (ActorId)
-			REFERENCES mcu.Character (ActorId)
-			ON DELETE RESTRICT
+			REFERENCES Movie(MovieId)
+            ON DELETE RESTRICT,
+	CONSTRAINT	fk_characterId_character
+		FOREIGN KEY	(CharacterId)
+			REFERENCES mcu.Character(CharacterId)
+            ON DELETE RESTRICT
 );
 
 DROP TABLE IF EXISTS mcu.SeriesCharacter;
 CREATE TABLE mcu.SeriesCharacter
 (
-	CharacterIdSeries	INT UNSIGNED,
-	ActorIdSeries		INT	UNSIGNED,
-	SeriesIdSeries	INT	UNSIGNED,
-	CONSTRAINT	pk_character_actor_series_id
-		PRIMARY KEY (CharacterIdSeries, ActorIdSeries, SeriesIdSeries),
-	CONSTRAINT	#fk_link_character_id
-		FOREIGN KEY (CharacterIdSeries)
-			REFERENCES mcu.Character (CharacterId)
-			ON DELETE RESTRICT,
-	CONSTRAINT	#fk_link_series_id
-		FOREIGN KEY (SeriesIdSeries)
-			REFERENCES Series (SeriesId)
-			ON DELETE RESTRICT,
-	CONSTRAINT	#fk_link_actor_id
-		FOREIGN KEY (ActorIdSeries)
-			REFERENCES mcu.Character (ActorId)
-			ON DELETE RESTRICT
+	SeriesId		INT UNSIGNED,
+    CharacterId	INT UNSIGNED,
+    CONSTRAINT	pk_character_series_id
+		PRIMARY KEY (SeriesId, CharacterId),
+	CONSTRAINT	fk_seriesId_series
+		FOREIGN KEY (SeriesId)
+			REFERENCES Series(SeriesId)
+            ON DELETE RESTRICT,
+	CONSTRAINT	fk_characterId_character
+		FOREIGN KEY	(CharacterId)
+			REFERENCES mcu.Character(CharacterId)
+            ON DELETE RESTRICT
 );
+
+DROP TABLE IF EXISTS mcu.MovieDirector;
+CREATE TABLE mcu.MovieDirector
+(
+	DirectorId	INT UNSIGNED,
+    MovieId		INT UNSIGNED,
+    CONSTRAINT	pk_director_movie_id
+		PRIMARY KEY	(DirectorId, MovieId),
+	CONSTRAINT	fk_directorId_person
+		FOREIGN KEY	(DirectorId)
+			REFERENCES	Person(PersonId)
+            ON DELETE RESTRICT,
+	CONSTRAINT	fk_movieId_movie
+		FOREIGN KEY (MovieId)
+			REFERENCES	Movie(MovieId)
+            ON DELETE RESTRICT
+);
+
+DROP TABLE IF EXISTS mcu.MovieComment;
+CREATE TABLE mcu.MovieComment
+(
+	MovieId		INT UNSIGNED,
+    CommentId	INT UNSIGNED,
+    CONSTRAINT	pk_movie_comment_id
+		PRIMARY KEY (MovieId, CommentId),
+	CONSTRAINT	fk_movieId_movie
+		FOREIGN KEY (MovieId)
+			REFERENCES Movie(MovieId)
+            ON DELETE RESTRICT,
+	CONSTRAINT fk_commentId_comment
+		FOREIGN KEY (CommentId)
+			REFERENCES mcu.Comment(CommentId)
+            ON DELETE RESTRICT
+);
+
+DROP TABLE IF EXISTS mcu.SeriesComment;
+CREATE TABLE mcu.SeriesComment
+(
+	SeriesId		INT UNSIGNED,
+    CommentId	INT UNSIGNED,
+    CONSTRAINT	pk_series_comment_id
+		PRIMARY KEY (SeriesId, CommentId),
+	CONSTRAINT	fk_seriesId_series
+		FOREIGN KEY (SeriesId)
+			REFERENCES Series(SeriesId)
+            ON DELETE RESTRICT,
+	CONSTRAINT fk_commentId_comment
+		FOREIGN KEY (CommentId)
+			REFERENCES mcu.Comment(CommentId)
+            ON DELETE RESTRICT
+);
+#DROP TABLE IF EXISTS mcu.MovieCharacter;
+#CREATE TABLE mcu.MovieCharacter
+#(
+#	CharacterId	INT	UNSIGNED,
+#	ActorId		INT	UNSIGNED,
+#	MovieId		INT	UNSIGNED,
+#	CONSTRAINT	pk_character_actor_movie_id
+#		PRIMARY KEY (CharacterId, ActorId, MovieId),
+#	CONSTRAINT	fk_link_character_id
+#		FOREIGN KEY (CharacterId)
+#			REFERENCES mcu.Character (CharacterId)
+#			ON DELETE RESTRICT,
+#	CONSTRAINT	fk_link_movie_id
+#		FOREIGN KEY (MovieId)
+#			REFERENCES Movie (MovieId)
+#			ON DELETE RESTRICT,
+#	CONSTRAINT	fk_link_actor_id
+#		FOREIGN KEY (ActorId)
+#			REFERENCES mcu.Character (ActorId)
+#			ON DELETE RESTRICT
+#);
+
+#DROP TABLE IF EXISTS mcu.SeriesCharacter;
+#CREATE TABLE mcu.SeriesCharacter
+#(
+#	CharacterIdSeries	INT UNSIGNED,
+#	ActorIdSeries		INT	UNSIGNED,
+#	SeriesIdSeries	INT	UNSIGNED,
+#	CONSTRAINT	pk_character_actor_series_id
+#		PRIMARY KEY (CharacterIdSeries, ActorIdSeries, SeriesIdSeries),
+#	CONSTRAINT	#fk_link_character_id
+#		FOREIGN KEY (CharacterIdSeries)
+#			REFERENCES mcu.Character (CharacterId)
+#			ON DELETE RESTRICT,
+#	CONSTRAINT	#fk_link_series_id
+#		FOREIGN KEY (SeriesIdSeries)
+#			REFERENCES Series (SeriesId)
+#			ON DELETE RESTRICT,
+#	CONSTRAINT	#fk_link_actor_id
+#		FOREIGN KEY (ActorIdSeries)
+#			REFERENCES mcu.Character (ActorId)
+#			ON DELETE RESTRICT
+#);
 
 
 #adding data
