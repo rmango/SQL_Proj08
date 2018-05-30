@@ -922,7 +922,7 @@ FROM millenialPpl;
 #view of movies that have someone named chris
 DROP VIEW IF EXISTS chrisMovie;
 CREATE VIEW chrisMovie AS
-SELECT Title
+SELECT Title, LastName
 FROM Movie
 	JOIN MovieCharacter USING(MovieId)
     JOIN `Character` USING(CharacterId)
@@ -930,4 +930,18 @@ FROM Movie
 WHERE Person.FirstName = 'Chris';
     
 SELECT * FROM chrisMovie;
+
+#view of movies that have someone named michael
+DROP VIEW IF EXISTS michaelMovie;
+CREATE VIEW michaelMovie AS
+SELECT Title, LastName
+FROM Movie
+	JOIN MovieCharacter USING(MovieId)
+    JOIN `Character` USING(CharacterId)
+    JOIN Person ON PersonId = ActorId
+WHERE Person.FirstName = 'Michael';
+    
+SELECT * FROM michaelMovie;
+
+#superheros that can fly
 
