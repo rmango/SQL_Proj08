@@ -1,0 +1,130 @@
+PersonId,FirstName,LastName,BirthDate,
+1,Robert,Downey Jr.,1965-04-04,Nominee
+2,Don,Cheadle,1969-03-11,Nominee
+3,Jeff,Bridges,1949-12-04,Winner
+4,Shaun,Toub,1963-04-06,Not yet
+5,Gwyneth,Paltrow,1972-09-27,Winner
+6,Samuel L.,Jackson,1948-12-21,Nominee
+7,Mark,Ruffalo,1967-11-22,Nominee
+8,William,Hurt,1950-03-20,Winner
+9,Scarlett,Johansson,1984-11-22,Not yet
+10,Mickey,Rourke,1952-09-16,Nominee
+11,Chris,Hemsworth,1983-08-11,Not yet
+12,Natalie,Portman,1981-06-09,NULL
+13,Tom,Hiddleston,1981-02-09,NULL
+14,Stellan,Skarsgard,1951-06-13,NULL
+15,Idris,Elba,1972-09-06,NULL
+16,Anthony,Hopkins,1937-12-31,NULL
+17,Rene,Russo,1954-02-17,NULL
+18,Jeremy,Renner,1971-01-07,NULL
+19,Clark,Gregg,1962-04-02,NULL
+20,Cobie,Smulders,1982-04-03,NULL
+21,Chris,Evans,1981-06-13,NULL
+22,Hugo,Weaving,1960-04-04,NULL
+23,Hayley,Atwell,1982-04-05,NULL
+24,Sebastian,Stan,1982-08-13,NULL
+25,Dominic,Cooper,1978-06-02,NULL
+26,Guy,Pearce,1967-10-05,NULL
+27,Jon,Favrue,1966-10-19,NULL
+28,Christopher,Eccleston,1964-02-16,NULL
+29,Jaimie,Alexander,1984-03-12,NULL
+30,Anthony,Mackie,1978-09-23,NULL
+31,Frank,Grillo,1965-06-08,NULL
+32,Emily,VanCamp,1986-05-12,NULL
+33,Robert,Redford,1936-08-18,NULL
+34,Chris,Pratt,1979-06-21,NULL
+35,Zoe,Saldana,1978-06-19,NULL
+36,Dave,Bautista,1969-01-18,NULL
+37,Vin,Diesel,1967-07-18,NULL
+38,Bradley,Cooper,1975-01-05,NULL
+39,Lee,Pace,1979-03-25,NULL
+40,Michael,Rooker,1955-04-06,NULL
+41,Karen,Gillan,1987-11-28,NULL
+42,Benicio,del Toro,1967-02-19,NULL
+43,Josh,Brolin,1968-02-12,NULL
+44,Aaron,Taylor-Johnson,1990-06-13,NULL
+45,Elizabeth,Olsen,1989-02-16,NULL
+46,Paul,Bettany,1971-05-27,NULL
+47,James,Spader,1960-02-07,NULL
+48,Paul,Rudd,1969-04-06,NULL
+49,Evangeline,Lily,1979-08-03,NULL
+50,Corey,Stoll,1976-03-04,NULL
+51,Michael,Douglas,1944-09-25,NULL
+52,Chadwick,Boseman,1977-11-29,NULL
+53,Tom,Holland,1996-06-01,NULL
+54,Daniel,Bruhl,1978-06-16,NULL
+55,Benedict,Cumberbatch,1976-07-19,NULL
+56,Chiwetel,Ejiofor,1977-07-10,NULL
+57,Benedict,Wong,1971-06-03,NULL
+58,Tilda,Swinton,1960-11-05,NULL
+59,Pom,Klementieff,1986-05-03,NULL
+60,Elizabeth,Debicki,1990-08-24,NULL
+61,Chirs,Sullivan,1980-07-19,NULL
+62,Kurt,Russell,1951-03-17,NULL
+63,Michael,Keaton,1951-09-05,NULL
+64,Zendaya,,1996-09-01,NULL
+65,Donald,Glover,1983-09-25,NULL
+66,Marisa,Tomei,1964-12-04,NULL
+67,Jacob,Batalon,1996-06-06,NULL
+68,Cate,Blanchett,1969-05-14,NULL
+69,Jeff,Goldblum,1952-10-22,NULL
+70,Tessa,Thompson,1983-10-03,NULL
+71,Karl,Urban,1972-06-07,NULL
+72,Michael B.,Jordan,1987-02-09,NULL
+73,Lupita,Nyong'o,1983-03-01,NULL
+74,Danai,Gurira,1978-02-14,NULL
+75,Martin,Freeman,1971-09-08,NULL
+76,Daniel,Kaluuya,1989-02-24,NULL
+77,Letitia,Wright,1993-10-31,NULL
+78,Winston,Duke,1986-11-15,NULL
+79,Andy,Serkis,1964-04-20,NULL
+80,Peter,Dinklage,1969-06-11,NULL
+81,Ming-Na,Wen,1963-11-20,Not yet
+82,Brett,Dalton,1983-01-07,Not yet
+83,Chloe,Bennet,1992-04-18,Not yet
+84,Elizabeth,Henstridge,1987-09-11,Not yet
+85,Natalia,Cordova-Buckley,1982-11-25,Not yet
+86,James,D'Arcy,1975-08-24,Not yet
+87,Anson,Mount,1973-02-25,Not yet
+88,Serinda,Swan,1984-07-11,Not yet
+89,Ken,Leung,1970-01-21,Not yet
+90,Eme,Ikwaukor,1984-08-13,Not yet
+91,Isabelle,Cornish,1994-07-24,Not yet
+92,Iwan,Rheon,1985-05-13,Not yet
+93,Charlie,Cox,1982-12-15,Not yet
+94,Deborah Ann,Woll,1985-02-07,Not yet
+95,Elden,Henson,1977-08-30,Not yet
+96,Krysten,Ritter,1981-12-16,NULL
+97,Mike,Colter,1976-08-26,NULL
+98,David,Tennant,1971-04-18,NULL
+99,Mahershala,Ali,1974-02-16,NULL
+100,Simone,Missick,1982-01-19,NULL
+101,Theo,Rossi,1975-06-04,NULL
+102,Finn,Jones,1988-03-24,NULL
+103,Jessica,Henwick,1992-08-30,NULL
+104,Tom,Pelphrey,1982-07-28,NULL
+105,Jon,Bernthal,1976-09-20,NULL
+106,Ebon,Moss-Bachrach,1977-03-19,NULL
+107,Ben,Barnes,1981-08-20,NULL
+108,Rhenzy,Feliz,1997-10-26,NULL
+109,Lyrica,Okano,1994-11-09,NULL
+110,Virginia,Gardner,1995-04-18,NULL
+111,Ariela,Barer,1998-10-14,NULL
+112,Julian,McMahon,1968-07-27,NULL
+113,Olivia,Holt,1997-08-05,NULL
+114,Aubrey,Joseph,1997-11-26,NULL
+115,Andrea,Roth,1967-09-30,NULL
+116,Louis,Leterrier,1973-06-17,NULL
+117,Kenneth,Branagh,1960-12-10,NULL
+118,Joe,Johnston,1950-05-13,NULL
+119,Joss,Whedon,1964-06-23,NULL
+120,Shane,Black,1961-12-16,NULL
+121,Alan,Taylor,NULL,NULL
+122,Anthony,Russo,1970-02-03,NULL
+123,Joe,Russo,1971-07-08,NULL
+124,James,Gunn,1966-08-05,NULL
+125,Peyton,Reed,1964-07-03,NULL
+126,Scott,Derrickson,1966-07-16,NULL
+127,Jon,Watts,1981-06-28,NULL
+128,Taika,Waititi,1975-08-16,NULL
+129,Ryan,Coolger,1986-05-23,NULL
