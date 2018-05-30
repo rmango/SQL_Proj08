@@ -82,13 +82,13 @@ CREATE TABLE mcu.MovieCharacter
     MovieId	INT UNSIGNED,
 	CharacterId	INT UNSIGNED,
     CONSTRAINT
-		PRIMARY KEY (CharacterId, MovieId),
-	CONSTRAINT
-		FOREIGN KEY (CharacterId)
-			REFERENCES `Character` (CharacterId),
+		PRIMARY KEY (MovieId, CharacterId),
 	CONSTRAINT
 		FOREIGN KEY (MovieId)
-			REFERENCES Movie (MovieId)
+			REFERENCES Movie (MovieId),
+	CONSTRAINT
+		FOREIGN KEY (CharacterId)
+			REFERENCES `Character` (CharacterId)     
 );
 
 DROP TABLE IF EXISTS mcu.Comment;
@@ -138,43 +138,20 @@ CREATE TABLE mcu.SeriesComment
 			ON DELETE RESTRICT	
 );
 
-#LINKING TABLE FOR CHARATERS AND MOVIE
-DROP TABLE IF EXISTS mcu.MovieCharacter;
-CREATE TABLE mcu.MovieCharacter
-(
-	CharacterId	INT	UNSIGNED,
-	MovieId		INT	UNSIGNED,
-	CONSTRAINT	
-		PRIMARY KEY (CharacterId, MovieId),
-	CONSTRAINT	
-		FOREIGN KEY (CharacterId)
-			REFERENCES mcu.Character (CharacterId)
-			ON DELETE RESTRICT,
-	CONSTRAINT
-		FOREIGN KEY (MovieId)
-			REFERENCES Movie (MovieId)
-			ON DELETE RESTRICT
-);
-
 DROP TABLE IF EXISTS mcu.SeriesCharacter;
 CREATE TABLE mcu.SeriesCharacter
 (
-	CharacterIdSeries	INT UNSIGNED,
-	ActorIdSeries		INT	UNSIGNED,
-	SeriesIdSeries	INT	UNSIGNED,
+	CharacterId	INT UNSIGNED,
+	SeriesId	INT	UNSIGNED,
 	CONSTRAINT	pk_character_actor_series_id
-		PRIMARY KEY (CharacterIdSeries, ActorIdSeries, SeriesIdSeries),
+		PRIMARY KEY (CharacterId, SeriesId),
 	CONSTRAINT	#fk_link_character_id
-		FOREIGN KEY (CharacterIdSeries)
+		FOREIGN KEY (CharacterId)
 			REFERENCES mcu.Character (CharacterId)
 			ON DELETE RESTRICT,
 	CONSTRAINT	#fk_link_series_id
-		FOREIGN KEY (SeriesIdSeries)
+		FOREIGN KEY (SeriesId)
 			REFERENCES Series (SeriesId)
-			ON DELETE RESTRICT,
-	CONSTRAINT	#fk_link_actor_id
-		FOREIGN KEY (ActorIdSeries)
-			REFERENCES mcu.Character (ActorId)
 			ON DELETE RESTRICT
 );
 
@@ -339,6 +316,22 @@ VALUES
 	(128,'Taika','Waititi','1975-08-16',NULL),
 	(129,'Ryan','Coolger','1986-05-23',NULL);
 
+INSERT INTO user
+VALUES
+	(1,'bhaken0','2017-10-25'),
+	(2,'rchamperlen1','2017-07-30'),
+	(3,'khenrion2','2018-04-06'),
+	(4,'gborham3','2017-11-15'),
+	(5,'prymer4','2017-06-27'),
+	(6,'ndessent5','2018-05-20'),
+	(7,'awescott6','2017-11-19'),
+	(8,'efranks7','2017-07-22'),
+	(9,'tweben8','2018-05-08'),
+	(10,'nitzkovsky9','2018-01-17'),
+	(11,'spoilerguy123','2017-11-11'),
+	(12,'wtramelb','2018-01-06'),
+	(13,'gklimkoc','2018-03-30');
+
     
 INSERT INTO `character`
 VALUES
@@ -458,7 +451,50 @@ VALUES
 	(114,'Tyrone Johnson','Cloak','Darkness','Hero',114),
 	(115,'Melissa Bowen',NULL,NULL,'Neutral',115);
     
+INSERT INTO series
+VALUES
+	(1,'Marvel`s Agents of S.H.I.E.L.D',73,'ABC','2013-09-24'),
+	(2,'Marvel`s Agent Carter',18,'ABC','2015-01-06'),
+	(3,'Marvel`s Inhumans',8,'ABC','2017-09-29'),
+	(4,'Marvel`s Daredevil',26,'Netflix','2013-4-10'),
+	(5,'Marvel`s Jessica Jones',26,'Netflix','2015-11-20'),
+	(6,'Marvel`s Luke Cage',26,'Netflix','2016-09-30'),
+	(7,'Marvel`s Iron Fist',23,'Netflix','2017-03-17'),
+	(8,'Marvel`s The Defenders',8,'Netflix','2017-08-18'),
+	(9,'Marvel`s The Punisher',13,'Netflix','2017-11-17'),
+	(10,'Marvel`s Runaways',23,'Hulu','2018-11-21'),
+	(11,'Marvel`s Cloak & Dagger',10,'Freeform','2018-06-07');    
+
+
+INSERT INTO movieDirector
+	(MovieId,DirectorId)
+VALUES
+	(1,27),
+	(2,116),
+	(3,27),
+	(4,117),
+	(5,118),
+	(6,119),
+	(7,120),
+	(8,121),
+	(9,122),
+	(9,123),
+	(10,124),
+	(11,119),
+	(12,125),
+	(13,122),
+	(13,123),
+	(14,126),
+	(15,124),
+	(16,127),
+	(17,128),
+	(18,129),
+	(19,122),
+	(19,123),
+	(20,125);
+    
 INSERT INTO movieCharacter
+	(MovieId,CharacterId)
 VALUES
 	(1,1),
 	(2,1),
@@ -539,13 +575,13 @@ VALUES
 	(6,19),
 	(6,20),
 	(9,20),
-	(11,20),
-	(19,20),
-	(5,21),
-	(6,21),
+	(11,20), #w
+	(19,20),#w
+    (5,21),#f
+	(6,21),#f
 	(8,21),
 	(9,21),
-	(11,21),
+	(11,21), #f
 	(13,21),
 	(16,21),
 	(19,21),
@@ -671,126 +707,72 @@ VALUES
 	(11,79),
 	(18,79),
 	(19,80);
-INSERT INTO movieComment
-VALUES
-	(19,3);
-INSERT INTO movieDirector
-VALUES
-	(1,27),
-	(2,116),
-	(3,27),
-	(4,117),
-	(5,118),
-	(6,119),
-	(7,120),
-	(8,121),
-	(9,122),
-	(9,123),
-	(10,124),
-	(11,119),
-	(12,125),
-	(13,122),
-	(13,123),
-	(14,126),
-	(15,124),
-	(16,127),
-	(17,128),
-	(18,129),
-	(19,122),
-	(19,123),
-	(20,125);
 
-INSERT INTO series
-VALUES
-	(1,'Marvel`s Agents of S.H.I.E.L.D',73,'ABC','2013-09-24'),
-	(2,'Marvel`s Agent Carter',18,'ABC','2015-01-06'),
-	(3,'Marvel`s Inhumans',8,'ABC','2017-09-29'),
-	(4,'Marvel`s Daredevil',26,'Netflix','2013-4-10'),
-	(5,'Marvel`s Jessica Jones',26,'Netflix','2015-11-20'),
-	(6,'Marvel`s Luke Cage',26,'Netflix','2016-09-30'),
-	(7,'Marvel`s Iron Fist',23,'Netflix','2017-03-17'),
-	(8,'Marvel`s The Defenders',8,'Netflix','2017-08-18'),
-	(9,'Marvel`s The Punisher',13,'Netflix','2017-11-17'),
-	(10,'Marvel`s Runaways',23,'Hulu','2018-11-21'),
-	(11,'Marvel`s Cloak & Dagger',10,'Freeform','2018-06-07');
 INSERT INTO seriescharacter
 VALUES
+	(6,1),
 	(19,1),
+	(21,2),
+	(23,1),
+	(23,2),
+	(25,2),
+	(29,1),
 	(81,1),
 	(82,1),
 	(83,1),
 	(84,1),
 	(85,1),
-	(23,2),
-	(87,2),
+	(86,2),
+	(87,3),
 	(88,3),
 	(89,3),
 	(90,3),
 	(91,3),
 	(92,3),
-	(93,3),
+	(93,4),
+	(93,8),
 	(94,4),
 	(94,8),
+	(94,9),
 	(95,4),
-	(95,8),
-	(95,9),
-	(96,4),
+	(96,5),
+	(96,8),
 	(97,5),
 	(97,8),
 	(98,5),
 	(98,6),
-	(98,3),
-	(99,5),
+	(98,8),
+	(99,6),
 	(100,6),
 	(101,6),
-	(102,6),
+	(102,7),
+	(102,8),
 	(103,7),
-	(103,8),
 	(104,7),
-	(105,7),
+	(105,9),
 	(106,9),
 	(107,9),
-	(108,9),
+	(108,10),
 	(109,10),
 	(110,10),
 	(111,10),
 	(112,10),
-	(113,10),
+	(113,11),
 	(114,11),
-	(115,11),
-	(116,11);
-INSERT INTO seriescomment
-VALUES
-	(1,'bhaken0','10/25/2017'),
-	(2,'rchamperlen1','7/30/2017'),
-	(3,'khenrion2','4/6/2018'),
-	(4,'gborham3','11/15/2017'),
-	(5,'prymer4','6/27/2017'),
-	(6,'ndessent5','5/20/2018'),
-	(7,'awescott6','11/19/2017'),
-	(8,'efranks7','7/22/2017'),
-	(9,'tweben8','5/8/2018'),
-	(10,'nitzkovsky9','1/17/2018'),
-	(11,'spoilerguy123','11/11/2017'),
-	(12,'wtramelb','1/6/2018'),
-	(13,'gklimkoc','3/30/2018');
-INSERT INTO user
-VALUES
-	(1,'bhaken0','10/25/2017'),
-	(2,'rchamperlen1','7/30/2017'),
-	(3,'khenrion2','4/6/2018'),
-	(4,'gborham3','11/15/2017'),
-	(5,'prymer4','6/27/2017'),
-	(6,'ndessent5','5/20/2018'),
-	(7,'awescott6','11/19/2017'),
-	(8,'efranks7','7/22/2017'),
-	(9,'tweben8','5/8/2018'),
-	(10,'nitzkovsky9','1/17/2018'),
-	(11,'spoilerguy123','11/11/2017'),
-	(12,'wtramelb','1/6/2018'),
-	(13,'gklimkoc','3/30/2018');
+	(115,11);
+
 INSERT INTO comment
 VALUES
 	(1,'This movie sucks','2008-12-29 14:12:43',2),
 	(2,'I really liked this movie','2013-10-24 20:24:09',12),
 	(3,'I wish spiderman was in the mcu','2012-05-20 17:29:49',4);
+
+INSERT INTO seriescomment
+VALUES
+	(2,4),
+	(1,3);
+
+INSERT INTO movieComment
+	(MovieId,CommentId)
+VALUES
+	(19,3);
