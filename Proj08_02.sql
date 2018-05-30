@@ -38,11 +38,11 @@ DROP TABLE IF EXISTS mcu.Movie;
 CREATE TABLE mcu.Movie
 (
 	MovieId			INT UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
-    Title			VARCHAR(45),
-    Rating			DECIMAL(2,1),
-    BoxOffice		DECIMAL(12,2),
-    DirectorId		INT UNSIGNED,
-    USReleaseDate	DATE,
+    Title			VARCHAR(45)	NOT NULL,
+    Rating			DECIMAL(2,1)	NULL,
+    BoxOffice		DECIMAL(12,2)	NULL,
+    DirectorId		INT UNSIGNED	NOT NULL,
+    USReleaseDate	DATE	NOT NULL,
     Budget			DECIMAL(20,2), #check this
     Phase			TINYINT(1),
 	CONSTRAINT	fk_movi_director_id
