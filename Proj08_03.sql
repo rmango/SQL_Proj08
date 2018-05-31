@@ -982,3 +982,14 @@ SELECT * FROM michaelMovie;
 
 #superheros that can fly
 
+
+
+#people who are director and actor
+SELECT FirstName, LastName
+FROM Person
+	JOIN `Character` 
+		ON PersonId = ActorId
+	JOIN MovieDirector
+		ON PersonId = DirectorId
+WHERE PersonId = ActorId AND PersonId = DirectorId;
+
