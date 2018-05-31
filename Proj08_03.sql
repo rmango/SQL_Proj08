@@ -49,8 +49,9 @@ CREATE TABLE mcu.Character
 	CharacterId		INT	UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
     CharacterName	VARCHAR(45),
     Alias			VARCHAR(45)													NULL,
-    Superpower		VARCHAR(45) NULL, 
-    #SET('Flight','Speed','Intelligence','Wealth','Strength')	NULL, <-- change later, cant add data
+    Superpower		SET('Wealth','Strength','Speed','Flight','Suit','Intelligence','Weapon','Technology','Magic','Mind Control',
+						'Earth','Fire','Water','Air','Size Alteration','Vision','Shape Shifting','Possession','Agility','Martial Arts','Tree',
+                        'Light','Darkness')	NULL,
     CharacterRole	ENUM('Hero','Villain','Anti-Hero','Neutral')				NULL,
     ActorId			INT UNSIGNED,
 	CONSTRAINT	fk_char_acto_id
@@ -93,7 +94,7 @@ DROP TABLE IF EXISTS mcu.Comment;
 CREATE TABLE mcu.Comment
 (
 	CommentId	INT UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
-	CommentText	VARCHAR(45),
+	CommentText	VARCHAR(2048), #check this
 	CommentTime	DATETIME(6),
 	UserId		INT UNSIGNED,
     CONSTRAINT
@@ -156,31 +157,6 @@ CREATE TABLE mcu.SeriesCharacter
 
 #adding data
 SHOW TABLES;
-
-
-
-INSERT INTO movie
-VALUES
-	(1,'Iron Man','7.9',585174222,'2008-05-02',140000000,1),
-	(2,'The Incredible Hulk','6.8',263427551,'2008-06-13',150000000,1),
-	(3,'Iron Man 2',7,623933331,'2010-05-07',200000000,1),
-	(4,'Thor',7,449326618,'2011-05-06',150000000,1),
-	(5,'Captain America: The First Avenger','6.9',370569774,'2011-07-21',140000000,1),
-	(6,'Marvel`s The Avengers','8.1',1518812988,'2012-05-04',220000000,1),
-	(7,'Iron Man 3','7.2',1214811252,'2013-05-03',178400000,2),
-	(8,'Thor: The Dark World',7,644571402,'2013-11-08',152700000,2),
-	(9,'Captain America: The Winter Soldier','7.8',714264267,'2014-04-04',177000000,2),
-	(10,'Guardians of the Galaxy','8.1',773328629,'2014-08-01',195900000,2),
-	(11,'Avengers: Age of Ultron','7.4',1405403694,'2015-05-01',365500000,2),
-	(12,'Ant-Man','7.3',519311965,'2015-07-17',109300000,2),
-	(13,'Captain America: Civil War','7.8',1153304495,'2016-05-06',250000000,3),
-	(14,'Doctor Strange','7.5',677718395,'2016-11-04',165000000,3),
-	(15,'Guardians of the Galaxy Vol. 2','7.7',863756051,'2017-05-05',200000000,3),
-	(16,'Spider-Man: Homecoming','7.5',880166924,'2017-07-07',175000000,3),
-	(17,'Thor: Ragnarok','7.9',853977126,'2017-11-03',180000000,3),
-	(18,'Black Panther','7.7',1344028665,'2018-02-16',205000000,3),
-	(19,'Avengers: Infinity War',9,1841081683,'2018-04-27',358000000,3),
-	(20,'Ant-Man and the Wasp',NULL,NULL,'2018-07-06',NULL,3);
 
 INSERT INTO person
 VALUES
@@ -317,8 +293,41 @@ VALUES
 	(131,'Terrence','Howard','1969-03-11','Nominee'),
 	(132,'Edward','Norton','1969-08-18','Nominee'),
 	(133,'Ben','Kingsley','1943-12-31','Winner');
-
-
+INSERT INTO movie
+VALUES
+	(1,'Iron Man','7.9',585174222,'2008-05-02',140000000,1),
+	(2,'The Incredible Hulk','6.8',263427551,'2008-06-13',150000000,1),
+	(3,'Iron Man 2',7,623933331,'2010-05-07',200000000,1),
+	(4,'Thor',7,449326618,'2011-05-06',150000000,1),
+	(5,'Captain America: The First Avenger','6.9',370569774,'2011-07-21',140000000,1),
+	(6,'Marvel`s The Avengers','8.1',1518812988,'2012-05-04',220000000,1),
+	(7,'Iron Man 3','7.2',1214811252,'2013-05-03',178400000,2),
+	(8,'Thor: The Dark World',7,644571402,'2013-11-08',152700000,2),
+	(9,'Captain America: The Winter Soldier','7.8',714264267,'2014-04-04',177000000,2),
+	(10,'Guardians of the Galaxy','8.1',773328629,'2014-08-01',195900000,2),
+	(11,'Avengers: Age of Ultron','7.4',1405403694,'2015-05-01',365500000,2),
+	(12,'Ant-Man','7.3',519311965,'2015-07-17',109300000,2),
+	(13,'Captain America: Civil War','7.8',1153304495,'2016-05-06',250000000,3),
+	(14,'Doctor Strange','7.5',677718395,'2016-11-04',165000000,3),
+	(15,'Guardians of the Galaxy Vol. 2','7.7',863756051,'2017-05-05',200000000,3),
+	(16,'Spider-Man: Homecoming','7.5',880166924,'2017-07-07',175000000,3),
+	(17,'Thor: Ragnarok','7.9',853977126,'2017-11-03',180000000,3),
+	(18,'Black Panther','7.7',1344028665,'2018-02-16',205000000,3),
+	(19,'Avengers: Infinity War',9,1841081683,'2018-04-27',358000000,3),
+	(20,'Ant-Man and the Wasp',NULL,NULL,'2018-07-06',NULL,3);
+INSERT INTO series
+VALUES
+	(1,'Marvel`s Agents of S.H.I.E.L.D',73,'ABC','2013-09-24'),
+	(2,'Marvel`s Agent Carter',18,'ABC','2015-01-06'),
+	(3,'Marvel`s Inhumans',8,'ABC','2017-09-29'),
+	(4,'Marvel`s Daredevil',26,'Netflix','2013-4-10'),
+	(5,'Marvel`s Jessica Jones',26,'Netflix','2015-11-20'),
+	(6,'Marvel`s Luke Cage',26,'Netflix','2016-09-30'),
+	(7,'Marvel`s Iron Fist',23,'Netflix','2017-03-17'),
+	(8,'Marvel`s The Defenders',8,'Netflix','2017-08-18'),
+	(9,'Marvel`s The Punisher',13,'Netflix','2017-11-17'),
+	(10,'Marvel`s Runaways',23,'Hulu','2018-11-21'),
+	(11,'Marvel`s Cloak & Dagger',10,'Freeform','2018-06-07');
 INSERT INTO user
 VALUES
 	(1,'bhaken0','2017-10-25'),
@@ -336,70 +345,70 @@ VALUES
 	(13,'gklimkoc','2018-03-30');
 
     
-INSERT INTO `character`
+INSERT INTO `Character`
 VALUES
-	(1,'Tony Stark','Iron Man','Wealth','Hero',1),
-	(2,'James Rhodes','War Machine','Suit','Hero',2),
+	(1,'Tony Stark','Iron Man','Wealth,Flight','Hero',1),
+	(2,'James Rhodes','War Machine','Suit,Flight','Hero',2),
 	(3,'Obadiah Stane','Iron Monger','Suit','Villain',3),
 	(4,'Yinsen',NULL,NULL,'Neutral',4),
 	(5,'Pepper Pots',NULL,NULL,'Neutral',5),
 	(6,'Nick Fury',NULL,NULL,'Hero',6),
 	(7,'Bruce Banner','Hulk','Strength','Hero',7),
 	(8,'Thaddeus Ross','Thunderbolt',NULL,'Anti-Hero',8),
-	(9,'Natasha Romanoff','Black Widow',NULL,'Hero',9),
+	(9,'Natasha Romanoff','Black Widow','Martial Arts','Hero',9),
 	(10,'Ivan Vanko','Whiplash','Suit','Villain',10),
-	(11,'Thor',NULL,'Strength','Hero',11),
+	(11,'Thor',NULL,'Strength,Weapon,Flight','Hero',11),
 	(12,'Jane Foster',NULL,NULL,'Hero',12),
-	(13,'Loki',NULL,'Trickery? Shape Shifting?','Anti-Hero',13),
+	(13,'Loki',NULL,'Shape Shifting','Anti-Hero',13),
 	(14,'Erik Selvig',NULL,NULL,'Neutral',14),
-	(15,'Heimdall',NULL,'Vision?','Hero',15),
+	(15,'Heimdall',NULL,'Vision','Hero',15),
 	(16,'Odin',NULL,'Strength','Neutral',16),
 	(17,'Frigga','NULL ',NULL,'Neutral',17),
-	(18,'Clint Barton','Hawkeye','Bow and arrow lol','Hero',18),
+	(18,'Clint Barton','Hawkeye','Weapon','Hero',18),
 	(19,'Phil Coulson',NULL,NULL,'Hero',19),
 	(20,'Maria Hill',NULL,NULL,'Neutral',20),
-	(21,'Steve Rogers','Captain America','Strength','Hero',21),
+	(21,'Steve Rogers','Captain America','Strength,Agility,Martial Arts','Hero',21),
 	(22,'Johann Schmidt','Red Skull',NULL,'Villain',22),
 	(23,'Peggy Carter',NULL,NULL,'Hero',23),
 	(24,'Bucky Barnes','Winter Soldier','Strength','Hero',24),
 	(25,'Howard Stark',NULL,NULL,'Hero',25),
 	(26,'Aldrich Killian','The Mandarin',NULL,'Villain',26),
 	(27,'Happy Hogan',NULL,NULL,'Neutral',27),
-	(28,'Malekith',NULL,NULL,'Villain',28),
-	(29,'Sif',NULL,'??','Hero',29),
-	(30,'Sam Wilson','Falcon','Suit','Hero',30),
-	(31,'Brock Rumlow','Crossbone',NULL,'Villain',31),
+	(28,'Malekith',NULL,'Magic','Villain',28),
+	(29,'Sif',NULL,NULL,'Hero',29),
+	(30,'Sam Wilson','Falcon','Suit,Flight','Hero',30),
+	(31,'Brock Rumlow','Crossbone','Suit','Villain',31),
 	(32,'Sharon Carter','Agent 13',NULL,'Hero',32),
 	(33,'Alexander Pierce',NULL,NULL,'Villain',33),
 	(34,'Peter Quill','Star Lord',NULL,'Hero',34),
-	(35,'Gamora',NULL,NULL,'Hero',35),
+	(35,'Gamora',NULL,'Martial Arts','Hero',35),
 	(36,'Drax the Destroyer',NULL,'Strength','Hero',36),
-	(37,'Groot','I am Groot','Tree?','Hero',37),
-	(38,'Rocket',NULL,NULL,'Hero',38),
+	(37,'Groot','I am Groot','Tree','Hero',37),
+	(38,'Rocket',NULL,'Weapon','Hero',38),
 	(39,'Ronan the Accuser',NULL,'Strength','Villain',39),
-	(40,'Yondu Udonta',NULL,NULL,'Anti-Hero',40),
-	(41,'Nebula',NULL,NULL,'Anti-Hero',41),
+	(40,'Yondu Udonta',NULL,'Weapon','Anti-Hero',40),
+	(41,'Nebula',NULL,'Agility','Anti-Hero',41),
 	(42,'Teneleer Trivan','The Collector',NULL,'Neutral',42),
-	(43,'Thanos',NULL,'Strenght','Villain',43),
+	(43,'Thanos',NULL,'Strength','Villain',43),
 	(44,'Pietro Maximoff','Quicksilver','Speed','Anti-Hero',44),
-	(45,'Wanda Maximoff','Scarlet Witch,`Telekenesis',' Mind Control`','Hero',45),
+	(45,'Wanda Maximoff','Scarlet Witch','Magic,Mind Control','Hero',45),
 	(46,'Vision',NULL,'Flight','Hero',46),
-	(47,'Ultron',NULL,'robot?','Villain',47),
-	(48,'Scott Lang','Ant Man','tiny','Hero',48),
-	(49,'Hope van Dyne','Wasp','tiny','Hero',49),
-	(50,'Darren Cross','Yellowjacket','tiny','Villain',50),
+	(47,'Ultron',NULL,'Technology','Villain',47),
+	(48,'Scott Lang','Ant Man','Size Alteration','Hero',48),
+	(49,'Hope van Dyne','Wasp','Size Alteration','Hero',49),
+	(50,'Darren Cross','Yellowjacket','Size Alteration','Villain',50),
 	(51,'Hank Pym',NULL,NULL,'Hero',51),
-	(52,'T`Challa','Black Panther','`Strength, Agility`','Hero',52),
-	(53,'Peter Parker','Spider Man','`Agility, Sensory`','Hero',53),
+	(52,'T`Challa','Black Panther','Strength,Agility,Martial Arts','Hero',52),
+	(53,'Peter Parker','Spider Man','Agility','Hero',53),
 	(54,'Helmut Zemo',NULL,NULL,'Villain',54),
-	(55,'Stephen Strange','Dr. Strange','Magic','Hero',55),
+	(55,'Stephen Strange','Dr, Strange','Magic','Hero',55),
 	(56,'Karl Mordo',NULL,'Magic','Hero',56),
 	(57,'Wong',NULL,'Magic','Hero',57),
 	(58,'Ancient One',NULL,'Magic','Hero',58),
-	(59,'Mantis',NULL,'Mind Reading','Hero',59),
+	(59,'Mantis',NULL,'Mind Control','Hero',59),
 	(60,'Ayesha',NULL,NULL,'Villain',60),
 	(61,'Taserface',NULL,NULL,'Villain',61),
-	(62,'Ego',NULL,'Planet','Villain',62),
+	(62,'Ego',NULL,'Strength','Villain',62),
 	(63,'Adrian Toomes','Vulture','Suit','Villain',63),
 	(64,'Michelle Jones',NULL,NULL,'Neutral',64),
 	(65,'Aaron Davis','Prowler',NULL,'Neutral',65),
@@ -407,39 +416,39 @@ VALUES
 	(67,'Ned',NULL,NULL,'Hero',67),
 	(68,'Hela',NULL,'Magic','Villain',68),
 	(69,'Grandmaster',NULL,NULL,'Neutral',69),
-	(70,'Valkryie',NULL,NULL,'Hero',70),
+	(70,'Valkryie',NULL,'Weapon','Hero',70),
 	(71,'Skurge',NULL,NULL,'Villain',71),
 	(72,'Erik Stevens','Killmonger',NULL,'Villain',72),
 	(73,'Nakia',NULL,NULL,'Hero',73),
-	(74,'Okoye',NULL,NULL,'Hero',74),
-	(75,'Everett K. Ross','NULL ',NULL,'Hero',75),
+	(74,'Okoye',NULL,'Weapon','Hero',74),
+	(75,'Everett K, Ross','NULL ',NULL,'Hero',75),
 	(76,'W`Kabi',NULL,NULL,'Anti-Hero',76),
-	(77,'Shuri',NULL,'Intellegence','Hero',77),
+	(77,'Shuri',NULL,'Intelligence','Hero',77),
 	(78,'M`Baku','Man Ape','Strength','Anti-Hero',78),
 	(79,'Ulysses Klaue','Klaw','Technology','Villain',79),
 	(80,'Eitri',NULL,NULL,'Neutral',80),
 	(81,'Melinda May',NULL,NULL,'Hero',81),
 	(82,'Grant Ward','Hive','Possession','Villain',82),
-	(83,'`Daisy ``Skye`` Johnson`','Quake','Earthquakes','Hero',83),
+	(83,'`Daisy ``Skye`` Johnson`','Quake','Earth','Hero',83),
 	(84,'Jemma Simmons',NULL,'Intelligence','Hero',84),
-	(85,'Elena Rodriguez','Yo-Yo','speed','Hero',85),
+	(85,'Elena Rodriguez','Yo-Yo','Speed','Hero',85),
 	(86,'Edwin Jarvis',NULL,NULL,'Neutral',86),
-	(87,'Black Bolt',NULL,'Sound','Hero',87),
-	(88,'Medusa',NULL,'Hair','Hero',88),
+	(87,'Black Bolt',NULL,'Air','Hero',87),
+	(88,'Medusa',NULL,'Magic','Hero',88),
 	(89,'Karnak',NULL,NULL,'Hero',89),
 	(90,'Gorgon',NULL,NULL,'Hero',90),
-	(91,'Crystal',NULL,'`Earth, Air, Fire, Water`','Hero',91),
+	(91,'Crystal',NULL,'Earth,Air,Fire,Water','Hero',91),
 	(92,'Maximus',NULL,NULL,NULL,92),
 	(93,'Matt Murdock','Daredevil',NULL,NULL,93),
 	(94,'Karen Page',NULL,NULL,'Neutral',94),
 	(95,'Elden Henson',NULL,NULL,NULL,95),
-	(96,'Jessica Jones',NULL,'`Strength, Flight`','Hero',96),
+	(96,'Jessica Jones',NULL,'Strength,Flight','Hero',96),
 	(97,'Luke Cage',NULL,'Strength','Hero',97),
 	(98,'Kilgrave',NULL,'Mind control','Villain',98),
 	(99,'Cornell Stokes','Cottonmouth',NULL,'Villain',99),
 	(100,'Misty Knight',NULL,NULL,'Hero',100),
 	(101,'Hernan Alvarez','Shades',NULL,'Villain',101),
-	(102,'Danny Rand ','Iron Fist','Kung-fu and Iron Fist','Hero',102),
+	(102,'Danny Rand ','Iron Fist','Martial Arts','Hero',102),
 	(103,'Colleen Wing',NULL,NULL,'Hero',103),
 	(104,'Ward Meachum',NULL,NULL,'Neutral',104),
 	(105,'Frank Castle','Punisher',NULL,'Anti-Hero',105),
@@ -447,27 +456,15 @@ VALUES
 	(107,'Billy Russo',NULL,NULL,'Neutral',107),
 	(108,'Alex Wilder',NULL,'Intelligence','Hero',108),
 	(109,'Nico Minoru',NULL,NULL,'Hero',109),
-	(110,'Karolina Dean',NULL,'`Flight, Light shooting`','Hero',110),
-	(111,'Gert Yorkes',NULL,'Telepathy','Hero',111),
+	(110,'Karolina Dean',NULL,'Flight,Light','Hero',110),
+	(111,'Gert Yorkes',NULL,'Mind Control','Hero',111),
 	(112,'Jonah',NULL,NULL,'VIllain',112),
-	(113,'Tandy Bowen','Dagger','Light shooting','Hero',113),
+	(113,'Tandy Bowen','Dagger','Light','Hero',113),
 	(114,'Tyrone Johnson','Cloak','Darkness','Hero',114),
-	(115,'Melissa Bowen',NULL,NULL,'Neutral',115);
-    
-INSERT INTO series
-VALUES
-	(1,'Marvel`s Agents of S.H.I.E.L.D',73,'ABC','2013-09-24'),
-	(2,'Marvel`s Agent Carter',18,'ABC','2015-01-06'),
-	(3,'Marvel`s Inhumans',8,'ABC','2017-09-29'),
-	(4,'Marvel`s Daredevil',26,'Netflix','2013-4-10'),
-	(5,'Marvel`s Jessica Jones',26,'Netflix','2015-11-20'),
-	(6,'Marvel`s Luke Cage',26,'Netflix','2016-09-30'),
-	(7,'Marvel`s Iron Fist',23,'Netflix','2017-03-17'),
-	(8,'Marvel`s The Defenders',8,'Netflix','2017-08-18'),
-	(9,'Marvel`s The Punisher',13,'Netflix','2017-11-17'),
-	(10,'Marvel`s Runaways',23,'Hulu','2018-11-21'),
-	(11,'Marvel`s Cloak & Dagger',10,'Freeform','2018-06-07');    
-
+	(115,'Melissa Bowen',NULL,NULL,'Neutral',115),
+	(116,'Trevor Slattery','The Mandarin',NULL,'Neutral',133),
+	(117,'Korg',NULL,'Strength','Hero',128),
+	(118,'Zuri',NULL,NULL,'Hero',130);
 
 INSERT INTO movieDirector
 	(MovieId,DirectorId)
@@ -496,8 +493,8 @@ VALUES
 	(19,123),
 	(20,125);
     
-INSERT INTO movieCharacter
-	(MovieId,CharacterId)
+INSERT INTO moviecharacter
+	(MovieId, CharacterId)
 VALUES
 	(1,1),
 	(2,1),
@@ -578,13 +575,13 @@ VALUES
 	(6,19),
 	(6,20),
 	(9,20),
-	(11,20), #w
-	(19,20),#w
-    (5,21),#f
-	(6,21),#f
+	(11,20),
+	(19,20),
+	(5,21),
+	(6,21),
 	(8,21),
 	(9,21),
-	(11,21), #f
+	(11,21),
 	(13,21),
 	(16,21),
 	(19,21),
@@ -711,6 +708,61 @@ VALUES
 	(18,79),
 	(19,80);
 
+INSERT INTO comment
+VALUES
+	(1,'This movie sucks','2008-12-29 14:12:43',2),
+	(2,'I really liked this movie','2013-10-24 20:24:09',12),
+	(3,'I wish spiderman was in the mcu','2012-05-20 17:29:49',4),
+	(4,'Thanos is the best villain in the mcu by far','2018-05-01 12:00:04',1),
+	(5,'Loki is the only good villain the mcu has lol','2012-10-24 9:39:21',1),
+	(6,'`Avengers: Infinity War manages together the following franchise not too deep, they`re being special effects and in a cliffhanger, ratings would do just met are heart to you! I always curious and the most epically satisfying on safe ground, relying on stunning when just a complete wasting its immense run time`','2017-12-10 19:47:48',3),
+	(7,'`This movie a rotten score, this movie is fantasy. It was easily the MCU`s first 10 years, all while balancing numerous characters that for me, then this movie a rotten score, this 19th film that form between character the actors.??`','2017-12-10 19:47:48',4),
+	(8,'`It`s not only the more thought amount of the movie to heart, humor a two part asses to be this well balanced`','2018-04-03 15:06:52',8),
+	(9,'`Avenger, ratings would be this one of the movie.And I love all of cheesy, pretty decent they`re best mcu`','2017-09-24 6:00:09',9),
+	(10,'`Infinity War manages together the Star thought that I can imagine, this well balanced`','2018-04-16 22:35:29',13),
+	(11,'Everything happened. Some bits are a fan of the story! if you`ll never get movie. recommend highly for mindless summer action that an instant hit in ever-growing because I am always watched it. fun for this','2017-11-21 4:03:44',12),
+	(12,'`Best Spider-Man has somehow mixing were definitely, not like a kid reading Ned. I am laughing like something to putting at Jacob Batalon for into more producer camera angles that was... Can and Shocker who quick witted, the skater-like some stupid`','2017-08-20 22:25:45',10),
+	(13,'`The genre of the Star thought that I can chew. Thable or flat-out nonsensical comic book story was AMAZING. They have thought that just a complete was good to be in the critics who gave this well (without was added to make it entertainly the future, I mean, come on, Marvel in general, you should tank for event that we know where are funny and open mindless because I am always curious Project to date, but near. It`s hilarious about. Usually satisfying on stunning`','2017-05-22 0:15:41',6),
+	(14,'Michelle who invents gadgets bonus point of the audienced played him to concur evil because of the script is.','2017-12-30 13:20:42',8),
+	(15,'Contrary to witness the modern teenage life just a very much two hours? How did Zendaya make his superpower shines through another','2017-06-21 19:06:10',12),
+	(16,'`Did not amazing many teen genetic mutational character of Peter parker, understanding Ned. I am laughing like that make him to concur evil because of a genetics. Spider-Man review.`','2017-08-02 3:15:42',2),
+	(17,'`Spider-Mans power shines that doesn`t somehow mixing with human DNA some funny moments, in the fundamentals of fun`','2017-06-15 6:59:11',7),
+	(18,'`I agree with both actor to be the strong point of a special suit, his enormous amounts of my all time favorites. I felt that have a Spider Man movie that made for the Easter reboot this money and although another his teen-aged romances an and although another good as the identity of the MCU!`','2017-06-09 22:27:11',7),
+	(19,'`Iron Man reviously enjoyable. Spider-Man film to more entity of the Spider-Man somehow mixing a different another have a spected bag. In fantastic, the MCU, Spidermances. The Vulture are in the fun quickly because of Marisa Tom Holland is a unique abilities yet.`','2018-04-09 14:04:09',7),
+	(20,'Grade us for to date.','2017-07-21 9:34:17',9),
+	(21,'`Michael Keaton is and how relation, Spider-Man reboot that Tony and supposed on his own suit.... Can and the villains - Tomei as There definity to go about with his than augmenterplaying by Michael Keaton is pather good concentrate favorites. I love this concent MCU entity of our time. Hannibal Buress the different into more true charath`','2018-03-06 2:32:29',5),
+	(22,'`Easily threw me of the character, and failing title. Spider-man fan out that wasn`t Mary Jane...also Flash isn`t some of Iron Man movie that Iron Man script is.`','2017-07-24 21:17:02',4),
+	(23,'tom holland is THE Spider-Man has unique ability to concur evil because of the character Spider-Man anyone really well done It Again!','2017-08-08 10:07:30',4),
+	(24,'`Delivers are acquired because of the strong, the like a kid really revealed to tug at Jacob Batalon for this is a 2017 American spirit of a genetics. Spider-Man movie was back where are this movie, way between peter had play the web slinger. The villains on set. Also did not the villain as Adrian tombs/vulture the modern teenage life just as well done`','2018-04-16 19:20:18',8),
+	(25,'`Excellent, one of my favorite now :) Loved this is a very good villain in my opinion, humor and this movie`','2017-12-27 5:59:27',2),
+	(26,'UTELY HILARIOUS!','2017-09-20 15:11:50',6),
+	(27,'amazing movie seeing one of the comic-like the problems of the other Thor movie. One of rock man supporting this new management.','2017-09-07 22:34:52',5),
+	(28,'An enjoyed the recent Guardians of yet.','2017-09-30 2:16:05',9),
+	(29,'If she directed by the most important three. A deadly enjoyable among Marvel movie altogether.','2017-12-26 18:47:55',2),
+	(30,'`Before it, maybe I missed this new characters since parts from being scenes..With a surprisingly good elements, climax, nor characters involved the end of to be served and please checking the MCU Movie I ended up and showed up and this one of my all-time favorite now that SHIELD is dealing we have become a movie. this movies! The First saw on CCTV that Shield.`','2017-03-13 7:10:15',5),
+	(31,'`Civil War was given and lots of the list of good villain in my opinion, but they don`t everyone else and decided to see the entire affair way better for killed the art action the previous thor movie? Hulk vs Iron Man in my opinion of a film was puzzled by putting in Age of my all-time SHIELD`','2018-01-12 16:54:34',7),
+	(32,'`Well the MCU, without super heroes fights Hulkbuster movie is back the film doesn`t even die. Robert Downey Jr. just made that I loved the most of world war hulk who because when the film.`','2017-12-18 16:52:03',10),
+	(33,'`There the second half, but the right amount is able movies has done. The script has a brain.`','2017-06-03 14:22:42',11),
+	(34,'`I had seen it almost predictable among Marvel villain Zemo, playing`','2017-11-28 10:29:24',3),
+	(35,'Fans love this film and look at they see how it`s different during the continues Marvel`s Top 5','2018-02-18 20:55:23',6),
+	(36,'There it to the trailer was some lame pathetic comedy with the Defenders. And so on.','2018-02-22 2:27:17',8),
+	(37,'`I take thing and Spider-Man, Spider-Man fought thing astonishing really interesting to watch it`','2018-03-03 1:17:39',7),
+	(38,'This movie seen it almost predictable romp of action battles. I thorough who wanted revengers and so far. It fixed all well done. The Vision with very humorous movie is back thing really terrible to showed you don`t even stay interesting to get them to be obsessed the budget it was hoping film of 2016 America: Civil War that it now :) Loved the same time','2018-03-18 2:44:29',2),
+	(39,'`Excellent, one of Iron Fist film of 2016 America show off new antagonist and very funniest cameo was good element.`','2017-06-11 11:50:30',6),
+	(40,'`An entertaining so why not liking to get back the Avengers movie. It feels liked through it (the transition to see any sense, like I had seen it being for killed the served and Rogers before it to all along. Even if you why not necesara.`','2018-01-10 17:26:53',12),
+	(41,'`Fans loved thrown in. A new heroes set a new hero film is a joke? Because he blames even die. Robert Downey Jr. just phones fight in the Avenge on ever, so far. It feels like super nor characters involved, ever have died the new managements, it even see what we didn`t seen it almost of characters, but they all-time to the film`','2018-05-08 4:20:55',13),
+	(42,'`There were are a little nauseating, and it almost impossible in the serious. Lets not being film based on the only casualty due to all the fact remains that the films and d`','2017-05-08 12:54:24',13),
+	(43,'This series was great i loved the main character','2018-04-29 5:55:23',1),
+	(44,'WOW great 10/10','2017-11-28 10:29:24',1),
+	(45,'Watched entire series straight through did not sleep 2/10','2018-09-22 5:27:17',1);
+    
+INSERT INTO moviecomment
+VALUES
+	(19,3);
+INSERT INTO seriescomment
+VALUES
+	(4,4),
+	(1,3);
 INSERT INTO seriescharacter
 VALUES
 	(6,1),
@@ -764,21 +816,6 @@ VALUES
 	(114,11),
 	(115,11);
 
-INSERT INTO comment
-VALUES
-	(1,'This movie sucks','2008-12-29 14:12:43',2),
-	(2,'I really liked this movie','2013-10-24 20:24:09',12),
-	(3,'I wish spiderman was in the mcu','2012-05-20 17:29:49',4);
-
-INSERT INTO seriescomment
-VALUES
-	(2,1),
-	(1,3);
-
-INSERT INTO movieComment
-	(MovieId,CommentId)
-VALUES
-	(19,3);
     
     
 #sample queries
