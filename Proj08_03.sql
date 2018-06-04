@@ -123,7 +123,7 @@ CREATE TABLE mcu.MovieComment
 DROP TABLE IF EXISTS mcu.SeriesComment;
 CREATE TABLE mcu.SeriesComment
 (
-	SeriesId		INT	UNSIGNED,
+	SeriesId	INT	UNSIGNED,
     CommentId	INT UNSIGNED,
     CONSTRAINT
 		PRIMARY KEY (SeriesId, CommentId),        
@@ -706,7 +706,10 @@ VALUES
 	(19,78),
 	(11,79),
 	(18,79),
-	(19,80);
+	(19,80),
+    (7,116),
+	(17,117),
+	(18,118);
 
 INSERT INTO comment
 VALUES
@@ -801,7 +804,7 @@ VALUES
 	(7,43),
 	(6,44),
 	(5,45),
-	(5,46);
+	(5,13);
 
 INSERT INTO seriescharacter
 VALUES
@@ -856,8 +859,6 @@ VALUES
 	(114,11),
 	(115,11);
 
-    
-    
 #sample queries
 
 #get all actors from Thor
