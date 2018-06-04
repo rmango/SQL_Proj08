@@ -48,12 +48,12 @@ CREATE TABLE mcu.Character
 (
 	CharacterId		INT	UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
     CharacterName	VARCHAR(45),
-    Alias			VARCHAR(45)													NULL,
+    Alias			VARCHAR(45)					NULL,
     Superpower		SET('Wealth','Strength','Speed','Flight','Suit','Intelligence','Weapon','Technology','Magic','Mind Control',
 						'Earth','Fire','Water','Air','Size Alteration','Vision','Shape Shifting','Possession','Agility','Martial Arts','Tree',
                         'Light','Darkness')	NULL,
-    CharacterRole	ENUM('Hero','Villain','Anti-Hero','Neutral')				NULL,
-    ActorId			INT UNSIGNED,
+    CharacterRole	ENUM('Hero','Villain','Anti-Hero','Neutral')	NULL,
+    ActorId			INT UNSIGNED NOT NULL,
 	CONSTRAINT	fk_char_acto_id
 		FOREIGN KEY (ActorId)
 			REFERENCES Person(PersonId)
@@ -985,7 +985,7 @@ SELECT * FROM michaelMovie;
 
 
 #people who are director and actor
-SELECT FirstName, LastName
+SELECT DISTINCT FirstName, LastName
 FROM Person
 	JOIN `Character` 
 		ON PersonId = ActorId
@@ -993,3 +993,19 @@ FROM Person
 		ON PersonId = DirectorId
 WHERE PersonId = ActorId AND PersonId = DirectorId;
 
+
+#view
+DROP VIEW IF EXISTS character_movie_actor;
+CREATE VIEW character_movie_actor AS
+SELECT CharacterName, Title, CONCAT(Person.FirstName,' ',Person.LastName) AS ActorName
+FROM Person
+	JOIN `Character` ON ActorId = PersonId
+	JOIN MovieCharacter USING(CharacterId)
+    JOIN Movie USING(MovieId);
+
+SELECT * FROM character_movie_actor;
+
+#query that uses view
+SELECT ActorName, CharacterName
+FROM character_movie_actor
+WHERE Title = 'Thor';
