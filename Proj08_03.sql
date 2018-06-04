@@ -156,7 +156,6 @@ CREATE TABLE mcu.SeriesCharacter
 
 
 #adding data
-SHOW TABLES;
 
 INSERT INTO person
 VALUES
@@ -293,6 +292,7 @@ VALUES
 	(131,'Terrence','Howard','1969-03-11','Nominee'),
 	(132,'Edward','Norton','1969-08-18','Nominee'),
 	(133,'Ben','Kingsley','1943-12-31','Winner');
+    
 INSERT INTO movie
 VALUES
 	(1,'Iron Man','7.9',585174222,'2008-05-02',140000000,1),
@@ -315,6 +315,7 @@ VALUES
 	(18,'Black Panther','7.7',1344028665,'2018-02-16',205000000,3),
 	(19,'Avengers: Infinity War',9,1841081683,'2018-04-27',358000000,3),
 	(20,'Ant-Man and the Wasp',NULL,NULL,'2018-07-06',NULL,3);
+    
 INSERT INTO series
 VALUES
 	(1,'Marvel`s Agents of S.H.I.E.L.D',73,'ABC','2013-09-24'),
@@ -328,6 +329,7 @@ VALUES
 	(9,'Marvel`s The Punisher',13,'Netflix','2017-11-17'),
 	(10,'Marvel`s Runaways',23,'Hulu','2018-11-21'),
 	(11,'Marvel`s Cloak & Dagger',10,'Freeform','2018-06-07');
+    
 INSERT INTO user
 VALUES
 	(1,'bhaken0','2017-10-25'),
