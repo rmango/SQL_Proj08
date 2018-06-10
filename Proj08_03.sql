@@ -17,11 +17,11 @@ DROP TABLE IF EXISTS mcu.Movie;
 CREATE TABLE mcu.Movie
 (
 	MovieId			INT UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
-    Title			VARCHAR(45),
+    Title			VARCHAR(45)	NOT NULL,
     Rating			DECIMAL(2,1),
     BoxOffice		DECIMAL(12,2),
     USReleaseDate	DATE,
-    Budget			DECIMAL(20,2), #check this
+    Budget			DECIMAL(20,2),
     Phase			TINYINT(1)
 );
 
@@ -47,7 +47,7 @@ DROP TABLE IF EXISTS mcu.Character;
 CREATE TABLE mcu.Character
 (
 	CharacterId		INT	UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
-    CharacterName	VARCHAR(45),
+    CharacterName	VARCHAR(45)		NOT NULL,
     Alias			VARCHAR(45)					NULL,
     Superpower		SET('Wealth','Strength','Speed','Flight','Suit','Intelligence','Weapon','Technology','Magic','Mind Control',
 						'Earth','Fire','Water','Air','Size Alteration','Vision','Shape Shifting','Possession','Agility','Martial Arts','Tree',
@@ -94,7 +94,7 @@ DROP TABLE IF EXISTS mcu.Comment;
 CREATE TABLE mcu.Comment
 (
 	CommentId	INT UNSIGNED PRIMARY KEY	AUTO_INCREMENT,
-	CommentText	VARCHAR(2048), #check this
+	CommentText	VARCHAR(2048),
 	CommentTime	DATETIME(6),
 	UserId		INT UNSIGNED,
     CONSTRAINT
@@ -153,7 +153,6 @@ CREATE TABLE mcu.SeriesCharacter
 			REFERENCES Series (SeriesId)
 			ON DELETE RESTRICT
 );
-
 
 #adding data
 
@@ -292,7 +291,7 @@ VALUES
 	(131,'Terrence','Howard','1969-03-11','Nominee'),
 	(132,'Edward','Norton','1969-08-18','Nominee'),
 	(133,'Ben','Kingsley','1943-12-31','Winner');
-    
+
 INSERT INTO movie
 VALUES
 	(1,'Iron Man','7.9',585174222,'2008-05-02',140000000,1),
@@ -861,7 +860,37 @@ VALUES
 	(114,11),
 	(115,11);
 
+/*
+Sample queries and views
+*/
+
+#views
+#view of character, movie, actor
+DROP VIEW IF EXISTS character_movie_actor;
+CREATE VIEW character_movie_actor AS
+SELECT CharacterName, Title, CONCAT(Person.FirstName,' ',Person.LastName) AS ActorName
+FROM Person
+	JOIN `Character` ON ActorId = PersonId
+	JOIN MovieCharacter USING(CharacterId)
+    JOIN Movie USING(MovieId);
+
+SELECT * FROM character_movie_actor;
+
+#view of characters and actors
+DROP VIEW IF EXISTS character_actor;
+CREATE VIEW character_actor AS 
+SELECT CONCAT(Person.FirstName,' ',Person.LastName) AS ActorName, CharacterName
+FROM Person
+	JOIN `Character` ON ActorId = PersonId;
+
+SELECT * FROM character_actor;
+
 #sample queries
+
+#what character(s) did Gwyneth Paltrow play?
+SELECT CharacterName, ActorName 
+FROM character_actor
+WHERE ActorName = 'Gwyneth Paltrow';
 
 #get all actors from Thor
 SELECT CONCAT(Person.FirstName,' ',Person.LastName) AS ActorName, CharacterName
@@ -874,91 +903,12 @@ FROM Person
 		USING (MovieId)
 WHERE Title = 'Thor';
         
-#get all movies w/oscar-winning actors
-SELECT DISTINCT Movie.Title
-FROM Movie
-	JOIN MovieCharacter 
-		USING(MovieId)
-	JOIN `Character`
-		USING(CharacterId)
-	JOIN Person
-		ON ActorId = PersonId
-WHERE Person.Oscars = 'Winner';
-	
-#movies that have oscar winners are __ percent more likey to have a rating above 6
+#gets all actors from Thor using view
+SELECT ActorName, CharacterName
+FROM character_movie_actor
+WHERE Title = 'Thor';
 
-	#all movies that involve oscar-winners
-	SELECT DISTINCT Title, Rating#, directorPerson.LastName AS 'Director Name', ActorPerson.LastName AS 'Actor Name'
-	FROM Movie
-		JOIN MovieDirector USING(MovieId)
-		JOIN Person AS directorPerson ON DirectorId = PersonId
-		JOIN MovieCharacter USING(MovieId)
-		JOIN `Character` USING (CharacterId)
-		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
-	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner';
-
-	#average rating of movies w/oscar-winning actors or directors
-	SELECT DISTINCT Title, Rating#, COUNT(DISTINCT(Title))#, SUM(Rating)/COUNT(Rating) 
-	FROM Movie
-		JOIN MovieDirector USING(MovieId)
-		JOIN Person AS directorPerson ON DirectorId = PersonId
-		JOIN MovieCharacter USING(MovieId)
-		JOIN `Character` USING (CharacterId)
-		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
-	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner';
-
-#average of all oscar
-SELECT AVG(Rating)
-FROM (
-    SELECT DISTINCT Title, Rating
-	FROM Movie
-		JOIN MovieDirector USING(MovieId)
-		JOIN Person AS directorPerson ON DirectorId = PersonId
-		JOIN MovieCharacter USING(MovieId)
-		JOIN `Character` USING (CharacterId)
-		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
-	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner') oscarMovie;
-
-SELECT AVG(Rating)
-FROM (
-    SELECT DISTINCT Title, Rating
-	FROM Movie
-		JOIN MovieDirector USING(MovieId)
-		JOIN Person AS directorPerson ON DirectorId = PersonId
-		JOIN MovieCharacter USING(MovieId)
-		JOIN `Character` USING (CharacterId)
-		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
-	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner') oscarMovie;
- 
- #array of movies that do not contain oscar winners
-SELECT *
-FROM Movie
-WHERE 
-MovieId NOT IN (
-    SELECT DISTINCT MovieId
-	FROM Movie
-		JOIN MovieDirector USING(MovieId)
-		JOIN Person AS directorPerson ON DirectorId = PersonId
-		JOIN MovieCharacter USING(MovieId)
-		JOIN `Character` USING (CharacterId)
-		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
-	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner');
-    
-#avg of array of movies that do not contain oscar winners
-SELECT AVG(Rating)
-FROM Movie
-WHERE 
-MovieId NOT IN (
-    SELECT DISTINCT MovieId
-	FROM Movie
-		JOIN MovieDirector USING(MovieId)
-		JOIN Person AS directorPerson ON DirectorId = PersonId
-		JOIN MovieCharacter USING(MovieId)
-		JOIN `Character` USING (CharacterId)
-		JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
-	WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner');
-
-#FINALLLY
+#percent difference in movies with oscar winners and movies without
 SELECT ROUND((ABS(YesOscar - NoOscar))/((YesOscar + NoOscar)/2)*100,2) AS PercentDifference
 FROM (	
 		SELECT AVG(Rating) AS 'NoOscar'
@@ -985,23 +935,23 @@ FROM (
 				JOIN Person AS actorPerson ON ActorId = actorPerson.PersonId
 			WHERE directorPerson.Oscars = 'Winner' OR actorPerson.Oscars = 'Winner') oscarMovie) OscarMovieRating;
 
-# all comments from movies and series that an actor was in
+# all comments from movies that Chris Hemsworth was in
+SELECT Title, commentText
+FROM comment
+	JOIN movieComment USING(CommentId)
+    JOIN movie USING(MovieId)
+    JOIN movieCharacter USING(MovieId)
+    JOIN `Character` USING(CharacterId)
+    JOIN Person ON ActorId = PersonId
+WHERE Person.FirstName = 'Chris' AND Person.LastName = 'Hemsworth';
 
 #people that were born after 1989
-DROP VIEW IF EXISTS millenialPpl;
-CREATE VIEW millenialPpl AS
 SELECT * 
 FROM Person
 WHERE Birthdate > '1989-12-31'
 ORDER BY Birthdate DESC;
 
-SELECT * 
-FROM millenialPpl;
-
-
-#view of movies that have someone named chris
-DROP VIEW IF EXISTS chrisMovie;
-CREATE VIEW chrisMovie AS
+#movies that have someone named chris
 SELECT Title, LastName
 FROM Movie
 	JOIN MovieCharacter USING(MovieId)
@@ -1009,25 +959,15 @@ FROM Movie
     JOIN Person ON PersonId = ActorId
 WHERE Person.FirstName = 'Chris';
     
-SELECT * FROM chrisMovie;
-
-#view of movies that have someone named michael
-DROP VIEW IF EXISTS michaelMovie;
-CREATE VIEW michaelMovie AS
+#movies that have someone named michael
 SELECT Title, LastName
 FROM Movie
 	JOIN MovieCharacter USING(MovieId)
     JOIN `Character` USING(CharacterId)
     JOIN Person ON PersonId = ActorId
 WHERE Person.FirstName = 'Michael';
-    
-SELECT * FROM michaelMovie;
 
-#superheros that can fly
-
-
-
-#people who are director and actor
+#people who are both a director and an actor
 SELECT DISTINCT FirstName, LastName
 FROM Person
 	JOIN `Character` 
@@ -1037,18 +977,5 @@ FROM Person
 WHERE PersonId = ActorId AND PersonId = DirectorId;
 
 
-#view
-DROP VIEW IF EXISTS character_movie_actor;
-CREATE VIEW character_movie_actor AS
-SELECT CharacterName, Title, CONCAT(Person.FirstName,' ',Person.LastName) AS ActorName
-FROM Person
-	JOIN `Character` ON ActorId = PersonId
-	JOIN MovieCharacter USING(CharacterId)
-    JOIN Movie USING(MovieId);
 
-SELECT * FROM character_movie_actor;
 
-#query that uses view
-SELECT ActorName, CharacterName
-FROM character_movie_actor
-WHERE Title = 'Thor';
